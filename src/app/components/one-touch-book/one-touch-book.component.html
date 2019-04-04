@@ -1,0 +1,646 @@
+<div class="w3-container">
+
+    <div class="w3-panel w3-round-small w3-teal">
+        <h3>
+            <span>A Click Away</span>
+            <a routerLink="/oneclickbook" class="w3-button w3-orange custom-button" (click)="this.bookingSuccess=false;">
+                <i class="w3-medium fa fa-chevron-left"></i> Back</a>
+        </h3>
+    </div>
+    <div style="padding:0px!important">
+        <div fxFlex fxLayout="row" fxLayoutWrap *ngIf="!bookingSuccess">
+            <div fxFlex=100 fxLayout="row" fxLayout.xs="column" fxLayoutGap=2vw>
+                <div fxFlex=24 style="height:auto">
+                    <mat-card class="greenCard" fxFlex (click)="copy(2)" id="2">
+                        <div fxFlex fxLayout="row">
+                            <div fxFlex=70>
+                                <span> CHENNAI (MAA) - BANGALORE(BLR)</span>
+                            </div>
+                            <div fxFlex=30>
+                                <button mat-icon-button>
+                                    <mat-icon> file_copy </mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div fxFlex=24 style="height:auto">
+                    <mat-card class="greenCard" fxFlex (click)="copy(3)" id="3">
+                        <div fxFlex fxLayout="row">
+                            <div fxFlex=70>
+                                <span> CHENNAI(MAA) - DALLAS(DFW)</span>
+                            </div>
+                            <div fxFlex=30>
+                                <button mat-icon-button>
+                                    <mat-icon> file_copy </mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div fxFlex=24 style="height:auto">
+                    <mat-card class="greenCard" fxFlex (click)="copy(4)" id="4">
+                        <div fxFlex fxLayout="row">
+                            <div fxFlex=70>
+                                <span> CHENNAI(MAA) - HYDERABAD(HYD)</span>
+                            </div>
+                            <div fxFlex=30>
+                                <button mat-icon-button>
+                                    <mat-icon> file_copy </mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </div>
+                <div fxFlex=24 style="height:auto">
+                        <mat-form-field>
+                            <mat-select placeholder="Other requests" >
+                                <mat-option *ngFor="let x of requests" [value]="x" >
+                                   {{x}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                </div>
+
+            </div>
+        </div>
+        <div fxFlex fxLayout="row" *ngIf="!bookingSuccess">
+            <form [formGroup]="oneClickForm" style="width:100%" (ngSubmit)="book()">
+                <div fxFlex fxLayout.lg="row" fxLayout=column fxLayoutAlign="center center">
+                    <div fxFlex=30>
+                        <mat-form-field fxFlex>
+                            <input matInput formControlName=stDate [matDatepicker]="picker1" placeholder="Departure Date">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex=30>
+                        <mat-form-field fxFlex>
+                            <input matInput formControlName=RtrnDt [matDatepicker]="picker2" placeholder="Return Date">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxFlex fxLayout.lg="row" fxLayout=row fxLayoutAlign="center center">
+                    <button class="w3-button w3-deep-orange" type="submit" (click)="book()">
+                        <span>Submit</span>
+                        <i class="w3-medium fa fa-check"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!---- Consolidated start-->
+        <div fxLayout="column" fxLayoutGap="20px" ngStyle.gt-md="margin:20px 20px;" *ngIf="bookingSuccess">
+            <div class="w3-panel w3-round-small w3-teal">
+                <h3>Consolidated Details - {{number}} </h3>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" style="padding: 0vw 8vw">
+                <div fxFlex="50" fxLayoutAlign="start start" fxLayoutAlign.xs="end end">
+                    <label style="font-weight: bold">Advance:</label>
+                    <img style="padding-top: 3px" ngStyle.xs="padding-bottom: 4px" src="assets/rupee.png">0
+                </div>
+                <div fxLayout="column" fxLayout.xs="column" fxFlex="50" fxLayoutAlign="end end">
+                    <div>
+                        <label style="font-weight: bold">With Bills:</label>
+                        <img style="padding-top: 3px" src="assets/rupee.png">0/7500
+                    </div>
+                    <div>
+                        <label style="font-weight: bold">OPE:</label>
+                        <img style="padding-top: 3px" src="assets/rupee.png">0/2400
+                    </div>
+                </div>
+
+            </div>
+            <div fxLayout="row">
+                <div fxFlex="10%" fxFlex.xs="5%"></div>
+                <div fxFlex="80%" fxFlex.xs="95%">
+                    <mat-accordion style="width:85%">
+                        <mat-expansion-panel (opened)="panelOpenState" *ngFor="let taxi of taxiLst;index as i" [ngClass]="{'view-more':(panelOpenState) , 'view-less' : (!panelOpenState)}"
+                            (closed)="!panelOpenState" style="margin-bottom:20px;" fxLayoutGap="20px">
+
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-family: Arial,sans-serif">
+                                    <mat-icon>local_taxi</mat-icon> &nbsp;
+                                    <div style="font-size: 17px;width: 100%;float: right;">{{taxi.pickUp}} to {{taxi.drop}}&emsp;&emsp;&emsp;
+                                        <span class="tobeappv">To Be Approved</span>
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap.xs="2vw">
+                                <div fxLayout="column" fxFlex="40">
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Travel Date:</label> {{taxi.travelDate |date:'dd-MMM-yyyy'}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Pickup Point:</label> {{taxi.pickUp}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Drop Point:</label> {{taxi.drop}}
+                                    </div>
+                                </div>
+
+                                <div fxLayout="column" fxFlex="40">
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Driver Name:</label> {{taxi.driverName}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Taxi No:</label> {{taxi.taxiNo}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Pickup Time:</label> {{taxi.pickupTime}}
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxFlex="20">
+                                    <div fxFlex="30" style="word-break: break-word">
+                                        <label style="font-weight: bold;"> Driver Phone Number:</label> {{taxi.driverPhNo}}
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <mat-accordion style="width:85%">
+                        <mat-expansion-panel (opened)="panelOpenState" [ngClass]="{'view-more':(panelOpenState) , 'view-less' : (!panelOpenState)}"
+                            (closed)="!panelOpenState" style="margin-bottom:20px;" fxLayoutGap="20px">
+
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-family: Arial,sans-serif">
+                                    <i class="material-icons">flight_takeoff</i>&nbsp;
+                                    <div style="font-size: 17px;width: 100%;float: right;"> {{ flightStaringPoint }} to {{ flightEndingPoint }} &emsp;&emsp;&emsp;
+                                        <span class="tobeappv">To Be Approved</span>
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxFlex class="row1">
+                                <div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutGap.xs=4vw>
+
+                                    <div fxFlex=15>
+                                        <div fxFlex fxLayout="column">
+                                            <div fxFlex=70>
+
+                                            </div>
+                                            <div fxFlex=30>
+                                                <span style="font-weight: bold">Airlines</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div fxFlex=15>
+                                        <div fxFlex fxLayout="column">
+                                            <div fxFlex=70>
+
+                                                <span style="font-weight: bold">Departure City</span>
+
+                                            </div>
+                                            <div fxFlex=30>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div fxFlex=15>
+                                        <div fxFlex fxHide.xs>
+                                            <span style="font-weight: bold">Departure Date</span>
+
+                                        </div>
+                                    </div>
+
+                                    <div fxFlex=15>
+                                        <div fxFlex>
+                                            <span style="font-weight: bold">Flight Travel Time</span>
+                                        </div>
+                                    </div>
+
+                                    <div fxFlex=15>
+                                        <div fxFlex fxLayout="column">
+                                            <div fxFlex=70>
+
+                                                <span style="font-weight: bold">Arrival City</span>
+
+                                            </div>
+                                            <div fxFlex=30>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div fxFlex=15>
+                                        <div fxFlex fxHide.xs>
+                                            <span style="font-weight: bold">Arrival Date</span>
+
+                                        </div>
+                                    </div>
+
+                                    <div fxFlex=15 fxLayoutAlign="end start">
+                                        <div fxFlex>
+                                            <span style="font-weight: bold">Total Fare</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div fxFlex style="margin-top:2vw" *ngFor="let flight of flightLst;index as i">
+                                <div fxFlex class="row1">
+                                    <div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutGap.xs=4vw>
+
+                                        <div fxFlex=15>
+                                            <div fxFlex fxLayout="column">
+                                                <div fxFlex=70>
+
+                                                </div>
+                                                <div fxFlex=30>
+                                                    <div fxFlex fxLayout="column">
+                                                        <span class=subtext>{{flight.airlines}}</span>
+                                                        <span class=subtext>{{flight.flightNo}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div fxFlex=15>
+                                            <div fxFlex fxLayout="column">
+                                                <div fxFlex=70>
+                                                    <span class.lt-md="maintextxs" class.lg="maintext">{{flight.depCode}}
+                                                        <span class="bold">{{flight.depTime}}</span>
+                                                    </span>
+                                                </div>
+                                                <div fxFlex=30>
+                                                    <span class=subtext>{{flight.depCity}} ,{{flight.depCountry}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxFlex=15>
+                                            <div fxFlex fxHide.xs>
+                                                <span>{{flight.depDate | date:'dd-MMM-yyyy'}}</span>
+
+                                            </div>
+                                        </div>
+
+                                        <div fxFlex=15>
+                                            <div fxFlex>
+                                                <span>{{flight.travelTime}} (Non-Stop)</span>
+                                            </div>
+                                        </div>
+
+                                        <div fxFlex=15>
+                                            <div fxFlex fxLayout="column">
+                                                <div fxFlex=70>
+                                                    <span class.lt-md="maintextxs" class.lg="maintext">{{flight.arrCode}}
+                                                        <span class="bold">{{flight.arrTime}}</span>
+                                                    </span>
+                                                </div>
+                                                <div fxFlex=30>
+                                                    <span class=subtext>{{flight.arrCity}} ,{{flight.arrCountry}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div fxFlex=15>
+                                            <div fxFlex fxHide.xs>
+                                                <span>{{flight.arrDate |date:'dd-MMM-yyyy'}}</span>
+
+                                            </div>
+                                        </div>
+
+                                        <div fxFlex=15 fxLayoutAlign="end start">
+                                            <div fxFlex>
+                                                <span>
+                                                    <img style="padding-top: 3px" src="assets/rupee.png">{{flight.totalFare}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <mat-accordion style="width:85%">
+                        <mat-expansion-panel (opened)="panelOpenState" *ngFor="let taxi of secTaxiLst" [ngClass]="{'view-more':(panelOpenState) , 'view-less' : (!panelOpenState)}"
+                            (closed)="!panelOpenState" style="margin-bottom:20px;" fxLayoutGap="20px">
+
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-family: Arial,sans-serif">
+                                    <mat-icon>local_taxi</mat-icon>&nbsp;
+                                    <div style="font-size: 17px;width: 100%;float: right;"> {{taxi.pickUp}} to {{taxi.drop}}&emsp;&emsp;&emsp;
+                                        <span class="tobeappv">To Be Approved</span>
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap.xs="2vw">
+                                <div fxLayout="column" fxFlex="40">
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Travel Date:</label> {{taxi.travelDate |date:'dd-MMM-yyyy'}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Pickup Point:</label> {{taxi.pickUp}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Drop Point:</label> {{taxi.drop}}
+                                    </div>
+                                </div>
+
+                                <div fxLayout="column" fxFlex="40">
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Driver Name:</label> {{taxi.driverName}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Taxi No:</label> {{taxi.taxiNo}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Pickup Time:</label> {{taxi.pickupTime}}
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxFlex="20">
+                                    <div fxFlex="30" style="word-break: break-word">
+                                        <label style="font-weight: bold"> Driver Phone Number:</label> {{taxi.driverPhNo}}
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <mat-accordion style="width:85%">
+                        <mat-expansion-panel (opened)="panelOpenState" *ngFor="let accom of accmLst" [ngClass]="{'view-more':(panelOpenState) , 'view-less' : (!panelOpenState)}"
+                            (closed)="!panelOpenState" style="margin-bottom:20px;" fxLayoutGap="20px">
+
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-family: Arial,sans-serif">
+                                    <mat-icon>hotel</mat-icon>&nbsp;
+                                    <div style="font-size: 17px;width: 100%;float: right;"> Accommodation in {{ accom.city}} &emsp;&emsp;&emsp;
+                                        <span class="tobeappv">To Be Approved</span>
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="3vw" style="word-break: break-word">
+                                <div fxLayout="column" fxFlex="40">
+                                    <div fxFlex="25" fxFlex.lt-md="31">
+                                        <label style="font-weight: bold">Hotel Name:</label> {{accom.acmName}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Check-In :</label> {{accom.durationCheckIn}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Check-Out:</label> {{accom.durationCheckOut}}
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxFlex="40">
+                                    <div fxFlex="30" fxFlex.lt-md="31">
+                                        <label style="font-weight: bold"> Hotel Address:</label> {{accom.address}}
+                                    </div>
+                                    <div fxFlex="25" fxFlex.lt-md="31">
+                                        <label style="font-weight: bold"> Hotel Phone:</label> {{accom.phno}}
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <mat-accordion style="width:85%">
+                        <mat-expansion-panel (opened)="panelOpenState" *ngFor="let taxi of returnTaxiLst" [ngClass]="{'view-more':(panelOpenState) , 'view-less' : (!panelOpenState)}"
+                            (closed)="!panelOpenState" style="margin-bottom:20px;" fxLayoutGap="20px">
+
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-family: Arial,sans-serif">
+                                    <mat-icon>local_taxi</mat-icon>&nbsp;
+                                    <div style="font-size: 17px;width: 100%;float: right;"> {{taxi.pickUp}} to {{taxi.drop}}&emsp;&emsp;&emsp;
+                                        <span class="tobeappv">To Be Approved</span>
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap.xs="2vw">
+                                <div fxLayout="column" fxFlex="40">
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Travel Date:</label> {{taxi.travelDate | date:'dd-MMM-yyyy'}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Pickup Point:</label> {{taxi.pickUp}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Drop Point:</label> {{taxi.drop}}
+                                    </div>
+                                </div>
+
+                                <div fxLayout="column" fxFlex="40">
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Driver Name:</label> {{taxi.driverName}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Taxi No:</label> {{taxi.taxiNo}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Pickup Time:</label> {{taxi.pickupTime}}
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxFlex="20">
+                                    <div fxFlex="30" style="word-break: break-word">
+                                        <label style="font-weight: bold"> Driver Phone Number:</label> {{taxi.driverPhNo}}
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <mat-accordion style="width:85%">
+                        <mat-expansion-panel (opened)="panelOpenState" [ngClass]="{'view-more':(panelOpenState) , 'view-less' : (!panelOpenState)}"
+                            (closed)="!panelOpenState" style="margin-bottom:20px;" fxLayoutGap="20px">
+
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-family: Arial,sans-serif">
+                                    <i class="material-icons">flight_takeoff</i>&nbsp;
+                                    <div style="font-size: 17px;width: 100%;float: right;"> {{ returnflightStaringPoint }} to {{ returnflightEndingPoint }} &emsp;&emsp;&emsp;
+                                        <span
+                                            class="tobeappv">To Be Approved</span>
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxFlex class="row1">
+                                <div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutGap.xs=4vw>
+
+                                    <div fxFlex=15>
+                                        <div fxFlex fxLayout="column">
+                                            <div fxFlex=70>
+
+                                            </div>
+                                            <div fxFlex=30>
+                                                <span style="font-weight: bold">Airlines</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div fxFlex=15>
+                                        <div fxFlex fxLayout="column">
+                                            <div fxFlex=70>
+
+                                                <span style="font-weight: bold">Departure City</span>
+
+                                            </div>
+                                            <div fxFlex=30>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div fxFlex=15>
+                                        <div fxFlex fxHide.xs>
+                                            <span style="font-weight: bold">Departure Date</span>
+
+                                        </div>
+                                    </div>
+
+                                    <div fxFlex=15>
+                                        <div fxFlex>
+                                            <span style="font-weight: bold">Flight Travel Time</span>
+                                        </div>
+                                    </div>
+
+                                    <div fxFlex=15>
+                                        <div fxFlex fxLayout="column">
+                                            <div fxFlex=70>
+
+                                                <span style="font-weight: bold">Arrival City</span>
+
+                                            </div>
+                                            <div fxFlex=30>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div fxFlex=15>
+                                        <div fxFlex fxHide.xs>
+                                            <span style="font-weight: bold">Arrival Date</span>
+
+                                        </div>
+                                    </div>
+
+                                    <div fxFlex=15 fxLayoutAlign="end start">
+                                        <div fxFlex>
+                                            <span style="font-weight: bold">Total Fare</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div fxFlex style="margin-top:2vw" *ngFor="let flight of returnflightLst;index as i">
+                                <div fxFlex class="row1">
+                                    <div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutGap.xs=4vw>
+
+                                        <div fxFlex=15>
+                                            <div fxFlex fxLayout="column">
+                                                <div fxFlex=70>
+
+                                                </div>
+                                                <div fxFlex=30>
+                                                    <div fxFlex fxLayout="column">
+                                                        <span class=subtext>{{flight.airlines}}</span>
+                                                        <span class=subtext>{{flight.flightNo}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div fxFlex=15>
+                                            <div fxFlex fxLayout="column">
+                                                <div fxFlex=70>
+                                                    <span class.lt-md="maintextxs" class.lg="maintext">{{flight.depCode}}
+                                                        <span class="bold">{{flight.depTime}}</span>
+                                                    </span>
+                                                </div>
+                                                <div fxFlex=30>
+                                                    <span class=subtext>{{flight.depCity}} ,{{flight.depCountry}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div fxFlex=15>
+                                            <div fxFlex fxHide.xs>
+                                                <span>{{flight.depDate |date:'dd-MMM-yyyy'}}</span>
+
+                                            </div>
+                                        </div>
+
+                                        <div fxFlex=15>
+                                            <div fxFlex>
+                                                <span>{{flight.travelTime}} (Non-Stop)</span>
+                                            </div>
+                                        </div>
+
+                                        <div fxFlex=15>
+                                            <div fxFlex fxLayout="column">
+                                                <div fxFlex=70>
+                                                    <span class.lt-md="maintextxs" class.lg="maintext">{{flight.arrCode}}
+                                                        <span class="bold">{{flight.arrTime}}</span>
+                                                    </span>
+                                                </div>
+                                                <div fxFlex=30>
+                                                    <span class=subtext>{{flight.arrCity}} ,{{flight.arrCountry}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div fxFlex=15>
+                                            <div fxFlex fxHide.xs>
+                                                <span>{{flight.arrDate |date:'dd-MMM-yyyy'}}</span>
+
+                                            </div>
+                                        </div>
+
+                                        <div fxFlex=15 fxLayoutAlign="end start">
+                                            <div fxFlex>
+                                                <span>
+                                                    <img style="padding-top: 3px" src="assets/rupee.png">{{flight.totalFare}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <mat-accordion style="width:85%">
+                        <mat-expansion-panel (opened)="panelOpenState" *ngFor="let taxi of taxiLst1;index as i" [ngClass]="{'view-more':(panelOpenState) , 'view-less' : (!panelOpenState)}"
+                            (closed)="!panelOpenState" style="margin-bottom:20px;" fxLayoutGap="20px">
+
+                            <mat-expansion-panel-header>
+                                <mat-panel-title style="font-family: Arial,sans-serif">
+                                    <mat-icon>local_taxi</mat-icon> &nbsp;
+                                    <div style="font-size: 17px;width: 100%;float: right;">{{taxi.pickUp}} to {{taxi.drop}} &emsp;&emsp;&emsp;
+                                        <span class="tobeappv">To Be Approved</span>
+                                    </div>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap.xs="2vw">
+                                <div fxLayout="column" fxFlex="40">
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Travel Date:</label> {{taxi.travelDate |date:'dd-MMM-yyyy'}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Pickup Point:</label> {{taxi.pickUp}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold"> Drop Point:</label> {{taxi.drop}}
+                                    </div>
+                                </div>
+
+                                <div fxLayout="column" fxFlex="40">
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Driver Name:</label> {{taxi.driverName}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Taxi No:</label> {{taxi.taxiNo}}
+                                    </div>
+                                    <div fxFlex="30">
+                                        <label style="font-weight: bold">Pickup Time:</label> {{taxi.pickupTime}}
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxFlex="20">
+                                    <div fxFlex="30" style="word-break: break-word">
+                                        <label style="font-weight: bold;"> Driver Phone Number:</label> {{taxi.driverPhNo}}
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>.
+
+        </div>
+
+
+        <!-- Consolidated end-->
+    </div>
+</div>

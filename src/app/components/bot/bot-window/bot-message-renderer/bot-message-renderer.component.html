@@ -1,0 +1,24 @@
+<div class="chat-body">
+	<div style="margin-left:6px;display:flex;" *ngIf="componentModel.text">
+		<img *ngIf="componentModel.icon!=null" src="./../../../../assets/{{userId | lowercase}}.png" class="author-icon" alt="User icon">
+		<div *ngIf="componentModel.icon!=null" class="user-chat-arrow"></div>
+		<div class="user-chat-text"><span *ngIf="(componentModel.content== null) && (componentModel.text!=null)" style="overflow-wrap: break-word;">{{componentModel.text}}</span></div>
+	</div>
+	<div *ngIf="componentModel.userName=='NIA'" style="margin-left:6px;display:flex;float:right;">
+		<div>
+			<!--<app-component-renderer *ngIf="componentModel.content != null && componentModel.content.contentType != null" [component-model]="componentModel.content"></app-component-renderer>-->
+			<div class="bot-chat-text" *ngIf="(componentModel.content != null)&& (componentModel.content.text != null)">
+			<div class="chat-left">
+					<span style="overflow-wrap: break-word;">{{componentModel.content.text}}</span>
+				</div>
+			</div>
+			<div class="bot-chat-text" *ngIf="(componentModel.content== null)&& (componentModel.content!=undefined) && (componentModel.text!=null)">
+			<div class="chat-left">
+					<span style="overflow-wrap: break-word;">{{componentModel.text}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="bot-chat-arrow"></div>
+		<img src="./../../../assets/icons/wally-chatbot-logo.png" class="author-icon" alt="NIA icon">
+	</div>
+</div>

@@ -1,0 +1,97 @@
+/*************************************************
+* Copyright ï¿½ 2017 Infosys Limited, Bangalore, India. All Rights Reserved. 
+* Infosys believes the information in this presentation is accurate as of its publication date; 
+* such information is subject to change without notice. Infosys acknowledges the proprietary rights 
+* of other companies to the trademarks, product names and such other intellectual property rights mentioned in this document. 
+* Except as expressly permitted, neither this presentation nor any part of it may be reproduced, stored in a retrieval system, 
+* or transmitted in any form or by any means, electronic, mechanical, printing, photocopying, recording or otherwise, 
+* without the prior permission of Infosys Limited and/or any named intellectual property rights holders under this document.
+*************************************************/
+
+.chat-body {
+    margin-top:12px;
+    margin-bottom: 20px;
+    display: flow-root;
+    list-style-type: lower-latin;
+    /*max-width: 92%;*/
+}
+
+.chat-body hr {
+    background: rgba(143, 207, 135, 0.58);
+    height: 1px;
+    border: none;
+    margin-top: 15px;
+    margin-bottom: 19px;
+}
+
+.author-icon {
+    width: 40px;
+    height:40px;
+}
+
+.user-chat-text{
+    background-color: #e6fbc9;
+    box-shadow: 1px 3px 1px -2px rgba(0,0,0,.2), 2px 2px 2px 0 rgba(0,0,0,.14), 1px 1px 5px 0 rgba(0,0,0,.12);
+    width:20vw;
+    color:#333333;
+    font-size: 15px;
+    border-radius:4px;
+    min-height: 40px;
+    padding:10px;
+    white-space: initial;
+    overflow: hidden;
+    font-family:Roboto-Regular;
+}
+
+.user-chat-text span{
+    padding: 5%;
+}
+
+.user-chat-arrow {
+    margin-top: 11px;
+    border-right-color: #e6fbc9;
+    border-left-width: 0;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border-style: solid;
+    border-width: 7px;
+    border-bottom-color: transparent;
+    border-top-color: transparent;
+    border-left-color: transparent;
+}
+
+@media screen and (min-device-width: 2048px) and (max-device-width : 2559px){
+    .user-chat-text{
+        font-size: 1.8vh;
+    }
+}
+
+@media screen and (min-device-width: 1024px) and (max-device-width : 1279px){
+    .user-chat-text{
+        font-size: 1.8vh;
+    }
+}    
+
+@media screen and (min-device-width: 1680px) and (max-device-width : 1919px){
+    .user-chat-text{
+        font-size: 1.8vh;
+    }
+}
+
+@media screen and (min-device-width: 1920px) and (max-device-width : 2047px){
+    .user-chat-text{
+        font-size: 1.8vh;
+    }
+}
+@media screen and (min-device-width: 2560px){
+    .user-chat-text{
+        font-size: 2vh;
+    }
+}
+
+@media screen and (min-device-width: 1280px) and (max-device-width : 1679px) and (min-device-height: 800px){
+    .user-chat-text{
+        font-size: 1.8vh;
+    }
+}

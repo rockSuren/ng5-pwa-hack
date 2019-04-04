@@ -1,0 +1,28 @@
+.greenCard {
+    font-size:13px;
+    padding:10px !important;
+    border-top: 2px solid #7ac143 !important;
+    margin-bottom: 20px;
+}
+.greenCard:hover {
+  border: 1px solid #7ac143 !important;
+  border-top: 2px solid #7ac143 !important ;
+  box-shadow: 0 2px 16px #aaa !important;
+}
+
+.tobeappv{
+  background: #e66f29;;
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+    line-height: 24px;
+    padding: 0 10px;
+    font-size: 10px;
+    text-transform: uppercase;
+    float: right;
+}
+mat-expansion-panel > mat-expansion-panel-header{
+  height:auto !important;
+padding:24px;
+  
+}

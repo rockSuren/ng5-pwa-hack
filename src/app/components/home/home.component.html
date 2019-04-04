@@ -1,0 +1,29 @@
+<!-- Created By : Inf-Wm Account -->
+
+<!-- Side Bar -->
+<div class="w3-teal">
+		<button class="w3-button w3-xlarge w3-hide-large" (click)="open()">&#9776;</button>
+		
+</div>
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card-2" ngClass.xs="w3-sidebar-mob w3-bar-block w3-collapse w3-animate-left w3-card-2" 
+style="z-index:3;width:250px;" id="mySidebar" (click)="closeNav()">
+	<!-- Logo -->
+	<img src="assets/favicon.png" class="logo"  fxShow fxHide.lt-md="true">
+	<!-- Sidebar Links -->
+	
+	<div *ngIf="loginType === 'manager'">	
+		<a class="w3-bar-item w3-button" [ngClass]="{'w3-teal': (active == '/')}" routerLink="/"> <i class="w3-medium fa fa-plus"></i>  AHD</a>
+		<a class="w3-bar-item w3-button" [ngClass]="{'w3-teal': (active == '/reschedule')}" routerLink="/reschedule"> <i class=" w3-medium material-icons">note</i> AMS</a>		
+	</div>
+	<a class="w3-bar-item w3-button" (click)="logOut()"><i class="w3-medium fa fa-sign-out"></i>  Logout</a>
+</nav>
+
+
+<div class="w3-main" style="margin-left:250px;" (click)="closeNav()">
+	<div class="w3-container" ngClass.xs="w3-container-mob">
+	<!-- Initiate Child Routing -->
+		<router-outlet></router-outlet>
+	</div>
+</div>
+
+<!-- Created By : Inf-Wm Account -->

@@ -1,0 +1,196 @@
+<div class="w3-container" *ngIf="studentAddForm">
+
+    <div class="w3-panel w3-round-small w3-teal">
+        <h3>
+            <span>Taxi</span>
+            <a routerLink="/reschedule" class="w3-button w3-orange custom-button">
+                <i class="w3-medium fa fa-chevron-left"></i> Back</a>
+        </h3>
+    </div>
+
+    <mat-card>
+        <form class="w3-container" [formGroup]="studentAddForm" (ngSubmit)="doRegister()">
+            <mat-card-content>
+                <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="100">
+                    <div class="w3-text-blue">
+                        <b>Travelers</b>
+                    </div>
+
+                    <input class="w3-input w3-border" type="text" style="width:100%" formControlName="value1" value="Ram Kumar">
+
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="100">
+                    <div fxLayout="row" class="w3-text-blue">
+                        <b>Desk</b>
+                    </div>
+                    <select fxLayout="row" class="w3-input w3-border" style="width:100%" type="text" formControlName="value2">
+                        <option *ngFor="let item of desk" [value]="item" [selected]="item=='GH_Mcity'">{{item}}</option>
+                    </select>
+                </div>
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row" class="w3-text-blue">
+                            <b>Pick up date and time</b>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <div fxLayout="column" fxFlex="60">
+                                <input id="pickup" type="text" style="width:100%" formControlName="value3">
+                            </div>
+                            <div fxLayout="column" fxFlex="10">
+                                <mat-datepicker-toggle matSuffix [for]="Inpicker"></mat-datepicker-toggle>
+                                <mat-datepicker #Inpicker></mat-datepicker>
+                            </div>
+                            <div fxLayout="column" fxFlex="30">
+                                    <input id="pickup" matInput  type="text" style="width:100%" formControlName="value4" value="09:00">
+                                </div>
+
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row" class="w3-text-blue">
+                            <b>Mobile number</b>
+                        </div>
+                        <div fxLayout="row">
+                                <input class="w3-input w3-border" type="text" style="width:100%" formControlName="value5" value="+919484856542">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-blue">
+                                <b>City</b>
+                            </label>
+                        </div>
+
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="value6">
+                                <option *ngFor="let item of city" [value]="item" [selected]="item=='Chennai'">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-blue">
+                                <b>Agent</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="value7">
+                                <option *ngFor="let item of agent" [value]="item" [selected]="item == 'Automated Booking Ola/Uber'">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-blue">
+                                <b>Pickup point</b>
+                            </label>
+                        </div>
+
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="value8">
+                                <option *ngFor="let item of pickup" [value]="item" [selected]="item=='Akkam'">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-blue">
+                                <b>Drop point</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="value9">
+                                <option *ngFor="let item of drop" [value]="item" [selected]="item=='Mahindra City'">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-blue">
+                                <b>Pickup address</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <textarea  class="w3-input w3-border" type="text" style="width:100%" formControlName="value10"></textarea>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-blue">
+                                <b>Drop address</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <textarea  class="w3-input w3-border" type="text" style="width:100%" formControlName="value11"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-blue">
+                                <b>Purpose</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="value12">
+                                <option *ngFor="let item of purpose" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-blue">
+                                <b>Project Code</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <input class="w3-input w3-border" type="text" style="width:100%" formControlName="value13">
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-blue">
+                                <b>Approver</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <input class="w3-input w3-border" matInput  type="text" style="width:100%" formControlName="value14">
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-blue">
+                                <b>Remarks</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <textarea class="w3-input w3-border" type="text" style="width:100%" formControlName="value15"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <button class="w3-button w3-deep-orange" type="submit">
+                    <span *ngIf="index == undefined">Quick book</span>
+                </button>
+            </mat-card-content>
+        </form>
+    </mat-card>
+</div>
+
+<!-- Created By : Inf-Wm Account -->

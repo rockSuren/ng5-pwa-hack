@@ -1,0 +1,133 @@
+<!-- Created By : Inf-Wm Account -->
+
+<div class="w3-container" ngClass.xs="w3-container-mob">
+    <div class="w3-panel w3-round-small w3-teal">
+        <h3>Requests for Booking</h3>
+    </div>
+    <!-- <span><i class="w3-medium fa fa-search"></i> Search : <input class="" type="text" [(ngModel)]='filterData'></span> -->
+    <div class="w3-panel w3-light-grey w3-padding-16 w3-card-2" routerLink="/requestItenary">
+      <table class="w3-table w3-striped w3-bordered" fxShow fxHide.lt-md="true">
+        <tr>
+          <th><i class="w3-medium" style="width: 120px"></i> iTravel No</th>
+          <th><i class="w3-medium" style="width: 120px"></i> Emp Id</th>
+          <th><i class="w3-medium"></i> Name</th>
+          <th><i class="w3-medium"></i> Type</th>
+          <th><i class="w3-medium"></i> From</th>
+          <th><i class="w3-medium"></i> To</th>
+          <th><i class="w3-medium"></i> Date</th>
+          <th><i class="w3-medium"></i> Time</th>
+        </tr>
+        <tr *ngFor="let employee of employeeListData | filter:filterData; index as i;" appHighlightStudent>
+          <td class="pointer" style="width: 120px">{{employee.travelNo}} </td>
+          <td class="pointer" style="width: 120px">{{employee.empId}} </td>
+          <td class="pointer" >{{employee.name}}</td>
+          <td class="pointer" >{{employee.type}}</td>
+          <td class="pointer" >{{employee.from}}</td>
+          <td class="pointer" >{{employee.to}}</td>
+          <td class="pointer" >{{employee.date}}</td>
+          <td class="pointer" >{{employee.time}}</td> 
+        </tr> 
+      </table>
+      <div fxFlex class="row1" fxHide fxShow.lt-md="true">
+          <div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutGap.xs=6vw>
+      
+          <div fxFlex=15>
+            <div fxFlex fxLayout="column">
+            <div fxFlex=70>
+              <span style="font-weight: bold"> iTravel No</span>
+            </div>
+            </div>
+          </div>
+      
+      
+          <div fxFlex=15>
+            <div fxFlex fxLayout="column">
+            <div fxFlex=70 style="word-break: break-word">
+              
+              <span style="font-weight: bold">Name/Emp #</span>
+            
+            </div>
+            <div fxFlex=30>
+            
+            </div>
+            </div>
+          </div>
+      
+          <div fxFlex=15 fxFlex.xs=17>
+            <div fxFlex>
+            <span style="font-weight: bold">Request Type</span>
+      
+            </div>
+          </div>
+      
+          <div fxFlex=15 >
+            <div fxFlex> 
+            <span style="font-weight: bold">Flight</span>
+            </div>
+          </div>
+            <div fxFlex=15 >
+                <div fxFlex> 
+                <span style="font-weight: bold;word-break: break-word">Date/Time</span>
+                </div>
+              </div>	
+        </div>
+      </div>	
+      <div fxFlex  style="margin-top:2vw" *ngFor = "let emp of employeeListData | filter:filterData; index as i;" fxHide fxShow.lt-md="true">						
+        <div fxFlex class="row1">
+            <div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutGap.xs=6vw>
+        
+            <div fxFlex=15>
+              <div fxFlex fxLayout="column">
+              <div fxFlex=70>
+                  <div fxFlex fxLayout="column" style="word-break: break-word">
+                <span class=subtext>{{emp.travelNo}}</span>						
+                </div>
+              </div>
+              </div>
+            </div>
+        
+        
+            <div fxFlex=15>
+              <div fxFlex fxLayout="column">
+                <div fxFlex=30>
+                  <span  class.lt-md="maintextxs" class.lg="maintext">{{emp.name}}             
+                  </span>
+                </div>
+                <div fxFlex=50>
+                    {{emp.empId}}
+                </div>		
+              </div>
+            </div>		
+            <div fxFlex=15 style="word-break: break-word" >
+              <div fxFlex> 
+              <span>{{emp.type}}</span>
+              </div>
+            </div>
+              <div fxFlex=17 >
+                  <div fxFlex fxLayout="column" fxLayoutGap="1vw">
+                  <div fxFlex=50>
+                      {{emp.from}} to
+                  </div>
+                  <div fxFlex=50>
+                      {{emp.to}}
+                  </div>
+                  </div>
+                </div>
+            <div fxFlex=15 >
+              <div fxFlex fxLayout="column" fxLayoutGap="1vw">
+              <div fxFlex=50>
+                  {{emp.date}}
+              </div>
+              <div fxFlex=50>
+                  {{emp.time}}
+              </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+

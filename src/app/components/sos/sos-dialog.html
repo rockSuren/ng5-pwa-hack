@@ -1,0 +1,20 @@
+<h1 mat-dialog-title class="caution" ngClass.xs="caution-mob">Caution</h1>
+<div mat-dialog-content>
+  <p>{{data.msg}}</p>
+  <table border="1">
+  <span>
+  <i class="material-icons" style="font-size:50px;color:green" ngStyle.xs="font-size:30px;color:green">location_on</i>
+  <i class="material-icons" style="font-size:50px" ngStyle.xs="font-size:30px">mic</i>
+  <i class="material-icons" style="font-size:50px" ngStyle.xs="font-size:30px">camera_alt</i>
+  </span><br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.animal" placeholder="Add any message">
+  </mat-form-field>
+  <p>{{data.contact}}</p>
+  </table>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Send</button>
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+  
+</div>

@@ -1,0 +1,75 @@
+<!-- Created By : Inf-Wm Account -->
+
+<div class="w3-container">
+	<div class="w3-panel w3-round-small w3-teal">
+		<h3>Eligibility Details <button routerLink="/" class="w3-button w3-deep-orange custom-button margin-right"> <i class="w3-medium fa fa-chevron-left"></i> Back</button></h3>
+	</div>
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <img height="100px" *ngIf="showTimer" width="100px" style="text-align: center;margin-top: 250px;
+        position: fixed;
+        z-index: 100;" src="assets/loader2.gif">
+      </div>
+
+	<mat-card>
+		<mat-card-content>
+	<form class="w3-container" [formGroup]="studentAddForm" (ngSubmit)="getData()">
+			<div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>From City</b>
+                            </label>
+                        </div>
+
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="fromCity">
+                                <option *ngFor="let item of fromCity" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>To City</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="toCity">
+                                <option *ngFor="let item of city" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div fxFlex fxLayout="row" fxLayoutAlign="end end">
+                        <button type="submit"  [disabled]="!studentAddForm.valid" class="w3-button w3-deep-orange" (click)="fetcheligibility()">Submit</button>
+                </div>
+                <!--<button class="w3-button w3-blue" type="submit" [disabled]="!studentAddForm.valid" >
+                    <span>Submit</span>
+                </button>-->
+	</form>
+
+	<br>
+		<table class="w3-table w3-bordered" *ngIf="eligibilityData &&!showTimer">
+			<tr>
+				<td><i class="w3-medium"></i> Flight Eligibility</td>
+				<td>: <b>INR {{eligibilityData.flight}}</b></td>
+			</tr>
+			<tr>
+				<td><i class="w3-medium"></i> Food Eligibility</td>
+				<td>: <b>INR {{eligibilityData.food}}</b></td>
+			</tr>
+			<tr>
+				<td><i class="w3-medium"></i> With Bills Eligibility</td>
+				<td>: <b>INR {{eligibilityData.withBills}}</b></td>
+			</tr>
+			<tr>
+				<td><i class="w3-medium"></i> OPE Eligibility</td>
+				<td>: <b>INR {{eligibilityData.ope}}</b></td>
+			</tr>
+		</table>
+  </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- Created By : Inf-Wm Account -->

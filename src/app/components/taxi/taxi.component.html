@@ -1,0 +1,320 @@
+<div class="w3-container" *ngIf="studentAddForm">
+
+    <div class="w3-panel w3-round-small w3-teal">
+        <h3>
+            <span>Taxi</span>
+            <a routerLink="/" class="w3-button w3-deep-orange custom-button">
+                <i class="w3-medium fa fa-chevron-left"></i> Back</a>
+        </h3>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <img height="100px" *ngIf="showTimer" width="100px" style="text-align: center;margin-top: 250px;
+        position: fixed;
+        z-index: 100;" src="assets/loader2.gif">
+      </div>
+
+    <mat-card *ngIf="!bookingSuccess">
+        <form class="w3-container" [formGroup]="studentAddForm" (ngSubmit)="doRegister()">
+            <mat-card-content>
+                <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="100">
+                    <div class="w3-text-gray">
+                        <b>Travelers</b>
+                    </div>
+
+                    <input class="w3-input w3-border" type="text" style="width:100%" formControlName="first_name">
+
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="100">
+                    <div fxLayout="row" class="w3-text-gray">
+                        <b>Desk</b>
+                    </div>
+                    <select fxLayout="row" class="w3-input w3-border" style="width:100%" type="text" formControlName="last_name">
+                        <option *ngFor="let item of desk" [value]="item">{{item}}</option>
+                    </select>
+                </div>
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row" class="w3-text-gray">
+                            <b>Pick up date and time</b>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <div fxLayout="column" fxFlex="60">
+                                <input id="pickup" matInput [matDatepicker]="Inpicker" style="width:100%" formControlName="first_name" placeholder="MM/DD/YYYY">
+                            </div>
+                            <div fxLayout="column" fxFlex="10">
+                                <mat-datepicker-toggle matSuffix [for]="Inpicker"></mat-datepicker-toggle>
+                                <mat-datepicker #Inpicker></mat-datepicker>
+                            </div>
+                            <div fxLayout="column" fxFlex="30">
+                                <input id="pickup" matInput type="time" style="width:100%" formControlName="first_name" placeholder="00:00">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row" class="w3-text-gray">
+                            <b>Mobile number</b>
+                        </div>
+                        <div fxLayout="row">
+                            <input class="w3-input w3-border" type="text" style="width:100%" formControlName="first_name" placeholder="+91">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>City</b>
+                            </label>
+                        </div>
+
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="last_name">
+                                <option *ngFor="let item of city" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Agent</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                                <mat-select placeholder="Agent (Optional)" formControlName="last_name">
+                                        <mat-option *ngFor="let agency of agent" [value]="agency" [matTooltip]="agenciesReview[agency]" matTooltipClass="tooltip"
+              matTooltipPosition="after"><span>{{agency}}</span>
+              <span class="stars-outer"><span class="stars-inner"  [style.width.%]="agenciesRating[agency]"></span></span>                 
+                                        </mat-option>
+                                      </mat-select>
+                            <!--<select class="w3-input w3-border" type="text" style="width:100%" formControlName="last_name">
+                                <option *ngFor="let item of agent" [value]="item">{{item}}</option>
+                                
+                            </select>-->
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Pickup point</b>
+                            </label>
+                        </div>
+
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="last_name">
+                                <option *ngFor="let item of pickup" [value]="item">{{item}}</option>
+                            </select>
+                            <i class="material-icons">location_on</i>
+                        </div>
+
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Drop point</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="last_name">
+                                <option *ngFor="let item of drop" [value]="item">{{item}}</option>
+                            </select>
+                            <i class="material-icons">location_on</i>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Pickup address</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <textarea class="w3-input w3-border" type="text" style="width:100%" formControlName="first_name"></textarea>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Drop address</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <textarea class="w3-input w3-border" type="text" style="width:100%" formControlName="first_name"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Purpose</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="last_name">
+                                <option *ngFor="let item of purpose" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Project Code</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <input class="w3-input w3-border" type="text" style="width:100%" formControlName="first_name">
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Approver</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row" style="align-items: center;">
+                            <input class="w3-input w3-border" type="text" style="width:65%" formControlName="first_name">
+                            <label>&nbsp;@infosys.com</label>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Remarks</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <textarea class="w3-input w3-border" type="text" style="width:100%" formControlName="first_name"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Would you like to share the cab ?</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row" style="align-items: center;">
+                            <mat-checkbox checked="true" (change)="change($event)"></mat-checkbox>
+                            <label> &nbsp;Yes</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="selected" fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                        <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                            <div fxLayout="row">
+                                <label class="w3-text-gray">
+                                    <b>Kindly choose a person with whom you would like to share:</b>
+                                </label>
+                            </div>
+                            <div fxLayout="row" style="align-items: center;" class="w3-panel w3-light-grey w3-padding-16 w3-card-2">
+                                    <table class="w3-table w3-striped w3-bordered" fxShow >
+                                            <tr>
+                                              <th><i class="w3-medium" style="width: 120px"></i> Select</th>  
+                                              <th><i class="w3-medium" style="width: 120px"></i> Employee Id</th>
+                                              <th><i class="w3-medium"></i> Name</th>
+                                              <th><i class="w3-medium"></i> Booking Req. Number</th>
+                                            </tr>
+                                            <tr >
+                                              <td class="pointer" >
+                                                  <input class="w3-input w3-border" type="checkbox"></td>
+                                              <td class="pointer" >812315</td>
+                                              <td class="pointer" >Karthic</td>
+                                              <td class="pointer" style="word-break: break-all" >R56895745</td>
+                                            </tr>  
+                                          </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                <br>
+
+                <button class="w3-button w3-deep-orange" type="submit">
+                    <span *ngIf="index == undefined" (click)="fetchtaxi()">Quick book</span>
+                </button>
+
+            </mat-card-content>
+        </form>
+    </mat-card>
+    <mat-card *ngIf="bookingSuccess && !showTimer">
+        <mat-card-content style="width:100%">
+            <div fxFlex fxLayout="column" style="font-size:22px" fxLayoutAlign="center center" *ngFor="let taxi of taxiLst">
+                <div fxFlex=10>
+                    <i class="material-icons" style="font-size:70px !important ;color:green">check_circle_outline</i>
+                </div>
+                <div fxFlex=10>Booking is confirmed!!</div>
+                <div fxFlex=10>Please Find the below details !!</div>
+                <div fxFlex=100 fxLayout="row" style="width:100%">
+                    <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                    <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Travel Date</div>
+                    <div fxFlex=10>:</div>
+                    <div fxFlex=40>{{taxi.travelDate}}</div>
+                </div>
+                <div fxFlex=100 fxLayout="row" style="width:100%">
+                    <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                    <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Pickup Point</div>
+                    <div fxFlex=10>:</div>
+                    <div fxFlex=40>{{taxi.pickUp}}</div>
+                </div>
+                <div fxFlex=100 fxLayout="row" style="width:100%">
+                    <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                    <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Travel Date</div>
+                    <div fxFlex=10>:</div>
+                    <div fxFlex=40>{{taxi.travelDate}}</div>
+                </div>
+                <div fxFlex=100 fxLayout="row" style="width:100%">
+                    <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                    <div fxFlex=20  fxFlex.lt-md=50  style="font-weight:bold">Drop Point</div>
+                    <div fxFlex=10>:</div>
+                    <div fxFlex=40>{{taxi.drop}}</div>
+                </div>
+                <div fxFlex=100 fxLayout="row" style="width:100%">
+                    <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                    <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Driver Name</div>
+                    <div fxFlex=10>:</div>
+                    <div fxFlex=40>{{taxi.driverName}}</div>
+                </div>
+                <div fxFlex=100 fxLayout="row" style="width:100%">
+                        <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                        <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Driver Ph No.</div>
+                        <div fxFlex=10>:</div>
+                        <div fxFlex=40>{{taxi.driverPhNo}}</div>
+                    </div>
+                <div fxFlex=100 fxLayout="row" style="width:100%">
+                    <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                    <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Taxi No</div>
+                    <div fxFlex=10>:</div>
+                    <div fxFlex=40>{{taxi.taxiNo}}</div>
+                </div>
+                <div fxFlex=100 fxLayout="row" style="width:100%">
+                    <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                    <div fxFlex=20 fxFlex.lt-md=50 style="font-weight:bold">Pickup Time</div>
+                    <div fxFlex=10>:</div>
+                    <div fxFlex=40>{{taxi.pickupTime}}</div>
+                </div>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+</div>
+
+<!-- Created By : Inf-Wm Account -->

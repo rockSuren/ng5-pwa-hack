@@ -1,0 +1,360 @@
+<div class="w3-container">
+  <div class="w3-panel w3-round-small w3-teal">
+    <h3>
+      <i class="material-icons">
+        location_city
+      </i> DC Details
+    </h3>
+  </div>
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-select placeholder="Select DC" [(ngModel)]="selecteddc">
+          <mat-option *ngFor="let dc of dcs" [value]="dc.value">
+            {{dc.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-card>
+        <mat-card-content>
+          <div fxLayout="row" fxFlex=100 fxLayout.xs="column" *ngIf="selecteddc=='CHN-M'">
+            <div fxFlex=30>
+              <div fxLayout="column" fxFlex fxLayout.xs="column">
+                <div fxFlex=20 style="text-align: center" fxFlexFill>
+                  <span style="font-weight:bold;" class=cell>
+                    <i class="material-icons">location_on</i>DC Location: </span>
+                </div>
+                <div fxFlex=50>
+                  <div fxFlex class.lt-md="mapouter_mob" class="mapouter">
+                    <div fxFlex class.lt-md="gmap_canvasmob" class="gmap_canvas">
+                      <iframe width="329" height="265" id="gmap_canvas" src="https://maps.google.com/maps?q=infosys%20mcity&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    </div>
+                  </div>
+                </div>
+                <div fxFlex=30 style="text-align: center">
+                  <p style="font-weight:bold">Address:</p>
+                  <span>Infosys Limited</span>
+                  <br>
+                  <span> Techno park SEZ,Mahindra World City</span>
+                  <br>
+                  <span> Natham Sub Post, Chengalpet</span>
+                  <br>
+                  <span> Kancheepuram District - 603004</span>
+                  <br>
+                  <span> Tamilnadu, India</span>
+                  <br>
+                  <span> Tel :91 44 4741 1111</span>
+                  <br>
+                  <span> Fax:91 44 4741 5151</span>
+                  <br>
+                  <span> www.infosys.com </span>
+                  <br>
+                </div>
+
+              </div>
+            </div>
+            <div fxFlex=70 >
+              <div fxLayout="column" fxFlex fxLayoutGap="5vh">
+                
+                <div fxFlex=30>
+                  <div fxFlex style="text-align: center" fxFlexFill>
+                    <span style="font-weight:bold;" class=cell>
+                      <i class="material-icons">location_on</i>DC HR Contacts: </span>
+                  </div>
+                  <div fxLayout="column" fxFlex=100 style="padding:2vw">
+                    <div fxLayout="row" fxFlex=50 class="contact2">
+                      <div fxFlex=30>  Dinesh Kamalasekaran</div>
+                      <div fxFlex=30>
+                        <i class="material-icons">contact_phone</i> +91 7358377915 </div>
+                      <div fxFlex=60>
+                        <i class="material-icons">email</i> Dinesh_K09@Infosys.com </div>
+                    </div>
+                  </div>
+                </div>
+                <div style="text-align: center" fxFlexFill>
+                    <span style="font-weight:bold;" class=cell>
+                      <i class="material-icons">calendar_today</i>DC Holiday Calendar: </span>
+                  </div>
+                  <div fxFlex=30 fxLayoutAlign="center center" fxLayout="column">
+                    <p style="color:Red;display: inline-flex"><i class="material-icons">add_alert </i> Upcoming holidays for the next two weeks </p><br>
+                    <mat-card style="width:90%">
+                        😃 Chennai DC will remain closed on 01 May,2019 on occasion of May Day
+                    </mat-card>
+                  </div>
+              </div>
+              <div fxLayout="column" fxLayoutAlign="center center" style="padding-top: 1vw">
+                
+                  <div> <i class="material-icons"> not_listed_location </i><label style="font-weight: bold">Explore Nearby</label> </div>
+                  <div>
+                   <mat-form-field>
+                       <mat-select placeholder="Select" [(ngModel)]="selectNear" (change)="lightbox_open($event);">
+                         <mat-option *ngFor="let nearMe of nearMeLst" [value]="nearMe.value" >
+                           {{nearMe.viewValue}}
+                         </mat-option>
+                       </mat-select>
+                     </mat-form-field>
+                   </div>
+             </div>
+            </div>
+          </div>
+          <div fxLayout="row" fxFlex=100 fxLayout.xs="column" *ngIf="selecteddc=='PUNE'">
+              <div fxFlex=30>
+                <div fxLayout="column" fxFlex fxLayout.xs="column">
+                  <div fxFlex=20 style="text-align: center" fxFlexFill>
+                    <span style="font-weight:bold;" class=cell>
+                      <i class="material-icons">location_on</i>DC Location: </span>
+                  </div>
+                  <div fxFlex=50>
+                    <div fxFlex class.lt-md="mapouter_mob" class="mapouter">
+                      <div fxFlex class.lt-md="gmap_canvasmob" class="gmap_canvas">
+                        <iframe width="329" height="265" id="gmap_canvas" src="https://maps.google.com/maps?q=infosys%20pune&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                          frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                      </div>
+                    </div>
+                  </div>
+                  <div fxFlex=30 style="text-align: center">
+                    <p style="font-weight:bold">Address:</p>
+                    <span>Infosys Limited</span>
+                    <br>
+                    <span> Taluka Mulshi</span>
+                    <br>
+                    <span>  Rajiv Gandhi Infotech Park</span>
+                    <br>
+                    <span> Hinjewadi, Pune </span>
+                    <br>
+                    <span> Maharashtra, India</span>
+                    <br>
+                    <span> Tel :91 20 2293 2800</span>
+                    <br>
+                    <span> www.infosys.com </span>
+                    <br>
+                  </div>
+  
+                </div>
+              </div>
+              <div fxFlex=70 >
+                <div fxLayout="column" fxFlex fxLayoutGap="5vh">
+                  
+                  <div fxFlex=30>
+                    <div fxFlex style="text-align: center" fxFlexFill>
+                      <span style="font-weight:bold;" class=cell>
+                        <i class="material-icons">location_on</i>DC HR Contacts: </span>
+                    </div>
+                    <div fxLayout="column" fxFlex=100 style="padding:2vw">
+                      <div fxLayout="row" fxFlex=50 class="contact2">
+                        <div fxFlex=30>  Dinesh Kamalasekaran</div>
+                        <div fxFlex=30>
+                          <i class="material-icons">contact_phone</i> +91 7358377915 </div>
+                        <div fxFlex=60>
+                          <i class="material-icons">email</i> Dinesh_K09@Infosys.com </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="text-align: center" fxFlexFill>
+                      <span style="font-weight:bold;" class=cell>
+                        <i class="material-icons">calendar_today</i>DC Holiday Calendar: </span>
+                    </div>
+                    <div fxFlex=30 fxLayoutAlign="center center" fxLayout="column">
+                        <p style="color:Red;display: inline-flex"><i class="material-icons">add_alert </i> Upcoming holidays for the next two weeks </p><br>
+                        <mat-card style="width:90%">
+                            😃 Pune DC will remain closed on 21 Mar,2019 on occassion of Holi
+                        </mat-card>
+                      </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="center center"  style="padding-top: 1vw">
+                
+                    <div> <i class="material-icons"> not_listed_location </i><label style="font-weight: bold">Explore Nearby</label> </div>
+                    <div>
+                     <mat-form-field>
+                         <mat-select placeholder="Select" [(ngModel)]="selectNear" (change)="lightbox_open($event);">
+                           <mat-option *ngFor="let nearMe of nearMeLst" [value]="nearMe.value" >
+                             {{nearMe.viewValue}}
+                           </mat-option>
+                         </mat-select>
+                       </mat-form-field>
+                     </div>
+               </div>
+              </div>
+            </div>
+            <div fxLayout="row" fxFlex=100 fxLayout.xs="column" *ngIf="selecteddc=='BLR'">
+                <div fxFlex=30>
+                  <div fxLayout="column" fxFlex fxLayout.xs="column">
+                    <div fxFlex=20 style="text-align: center" fxFlexFill>
+                      <span style="font-weight:bold;" class=cell> 
+                        <i class="material-icons">location_on</i>DC Location: </span>
+                    </div>
+                    <div fxFlex=50>
+                      <div fxFlex class.lt-md="mapouter_mob" class="mapouter">
+                        <div fxFlex class.lt-md="gmap_canvasmob" class="gmap_canvas">
+                          <iframe width="329" height="265" id="gmap_canvas" src="https://maps.google.com/maps?q=infosys%20bangalore&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                        </div>
+                      </div>
+                    </div>
+                    <div fxFlex=30 style="text-align: center">
+                      <p style="font-weight:bold">Address:</p>
+                      <span>Infosys Limited</span>
+                      <br>
+                      <span> Electronics City Phase 1</span>
+                      <br>
+                      <span> Bangalore </span>
+                      <br>
+                      <span> Karnataka, India</span>
+                      <br>
+                      <span> Tel :91 80 2852 0261</span>
+                      <br>
+                      <span> www.infosys.com </span>
+                      <br>
+                    </div>
+    
+                  </div>
+                </div>
+                <div fxFlex=70 >
+                  <div fxLayout="column" fxFlex fxLayoutGap="5vh">
+                    
+                    <div fxFlex=30>
+                      <div fxFlex style="text-align: center" fxFlexFill>
+                        <span style="font-weight:bold;" class=cell>
+                          <i class="material-icons">location_on</i>DC HR Contacts: </span>
+                      </div>
+                      <div fxLayout="column" fxFlex=100 style="padding:2vw">
+                          <div fxLayout="row" fxFlex=50 class="contact1">
+                              <div fxFlex=30> Deepak Sukhwal</div>
+                              <div fxFlex=30>
+                                <i class="material-icons">contact_phone</i> +91 8861168873 </div>
+                              <div fxFlex=60>
+                                <i class="material-icons">email</i> Deepak_Sukhwal@Infosys.com </div>
+                            </div>
+                        <div fxLayout="row" fxFlex=50 class="contact2">
+                          <div fxFlex=30>  Mark D. Cruz</div>
+                          <div fxFlex=30>
+                            <i class="material-icons">contact_phone</i> +91 7829919124 </div>
+                          <div fxFlex=60>
+                            <i class="material-icons">email</i> ​Mark_DCruz@Infosys.com </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="text-align: center" fxFlexFill>
+                        <span style="font-weight:bold;" class=cell>
+                          <i class="material-icons">calendar_today</i>DC Holiday Calendar: </span>
+                      </div>
+                      <div fxFlex=30 fxLayoutAlign="center center" fxLayout="column">
+                          <p style="color:Red;display: inline-flex"><i class="material-icons">add_alert </i> Upcoming holidays for the next two weeks </p><br>
+                          <mat-card style="width:90%">
+                              😃 Bangalore DC will remain closed on 04 Mar,2019 on occassion of MahaSivarathri
+                          </mat-card>
+                        </div>
+                  </div>
+                  <div fxLayout="column" fxLayoutAlign="center center"  style="padding-top: 1vw">
+                
+                      <div> <i class="material-icons"> not_listed_location </i><label style="font-weight: bold">Explore Nearby</label> </div>
+                      <div>
+                       <mat-form-field>
+                           <mat-select placeholder="Select" [(ngModel)]="selectNear" (change)="lightbox_open($event);">
+                             <mat-option *ngFor="let nearMe of nearMeLst" [value]="nearMe.value" >
+                               {{nearMe.viewValue}}
+                             </mat-option>
+                           </mat-select>
+                         </mat-form-field>
+                       </div>
+                 </div>
+                </div>
+              </div>
+              <div fxLayout="row" fxFlex=100 fxLayout.xs="column" *ngIf="selecteddc=='BEN'">
+                  <div fxFlex=30>
+                    <div fxLayout="column" fxFlex fxLayout.xs="column">
+                      <div fxFlex=20 style="text-align: center" fxFlexFill>
+                        <span style="font-weight:bold;" class=cell>
+                          <i class="material-icons">location_on</i>Nearest DC Location: </span>
+                      </div>
+                      <div fxFlex=50>
+                        <div fxFlex class.lt-md="mapouter_mob" class="mapouter">
+                          <div fxFlex class.lt-md="gmap_canvasmob" class="gmap_canvas">
+                            <iframe width="329" height="265" id="gmap_canvas" src="https://maps.google.com/maps?q=bentonville%20infosys&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                              frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                          </div>
+                        </div>
+                      </div>
+                      <div fxFlex=30 style="text-align: center">
+                        <p style="font-weight:bold">Address:</p>
+                        <span>Infosys Limited</span>
+                        <br>
+                        <span> 2700 SE S St Suite 200</span>
+                        <br>
+                        <span> Bentonville</span>
+                        <br>
+                        <span> AR 72712</span>
+                        <br>
+                        <span> USA</span>
+                        <br>
+                        <span> Tel :+1 479-271-4600</span>
+                        <br>
+                        <span> www.infosys.com </span>
+                        <br>
+                      </div>
+      
+                    </div>
+                  </div>
+                  <div fxFlex=70 >
+                    <div fxLayout="column" fxFlex fxLayoutGap="5vh">
+                      
+                      <div fxFlex=30>
+                        <div fxFlex style="text-align: center" fxFlexFill>
+                          <span style="font-weight:bold;" class=cell>
+                            <i class="material-icons">location_on</i>Nearest DC HR Contacts: </span>
+                        </div>
+                        <div fxLayout="column" fxFlex=100 style="padding:2vw">
+                          <div fxLayout="row" fxFlex=50 class="contact2">
+                            <div fxFlex=30>Shilpa Kerketta</div>
+                            <div fxFlex=30>
+                              <i class="material-icons">contact_phone</i> +1 2144576953</div>
+                            <div fxFlex=60>
+                              <i class="material-icons">email</i> shilpa_kerketta@infosys.com </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="text-align: center" fxFlexFill>
+                          <span style="font-weight:bold;" class=cell>
+                            <i class="material-icons">calendar_today</i>Nearest DC Holiday Calendar: </span>
+                        </div>
+                        <div fxFlex=30 fxLayoutAlign="center center" fxLayout="column">
+                          <p style="color:Red;display: inline-flex"><i class="material-icons">add_alert </i> Upcoming holidays for the next two weeks </p><br>
+                          <mat-card style="width:90%">
+                              😃 Bentonville DC will remain closed on 18 February,2019 on occassion of President's day
+                          </mat-card>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="center center"  style="padding-top: 1vw">
+                
+                        <div> <i class="material-icons"> not_listed_location </i><label style="font-weight: bold">Explore Nearby</label> </div>
+                        <div>
+                         <mat-form-field>
+                             <mat-select placeholder="Select" [(ngModel)]="selectNear" (change)="lightbox_open($event);">
+                               <mat-option *ngFor="let nearMe of nearMeLst" [value]="nearMe.value" >
+                                 {{nearMe.viewValue}}
+                               </mat-option>
+                             </mat-select>
+                           </mat-form-field>
+                         </div>
+                   </div>
+                  </div>
+                </div>
+                
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
+<div id="light">
+    <a class="boxclose" id="boxclose" (click)="lightbox_close();"></a>
+    <video id="VisaChipCardVideo" controls>
+        <!--<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">-->
+            <source src="assets/Pharmacy.MOV" type="video/mp4">
+        <!--Browser does not support <video> tag -->
+      </video>
+  </div>
+  
+  <div id="fade" (click)="lightbox_close();"></div>

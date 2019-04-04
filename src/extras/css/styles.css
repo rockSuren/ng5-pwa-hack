@@ -1,0 +1,115 @@
+/**
+ * Created By : Inf-Wm Account
+ */
+
+ /* You can add global styles to this file, and also import other style files */
+ .logo{
+	 margin: 30px 20px;
+	 width: 170px;
+	 height: 50px;
+ }
+ .custom-button{
+ 	float: right;
+ 	font-size: 15px;
+ }
+ .text-center{
+ 	text-align: center;
+ }
+ .pointer{
+ 	cursor: pointer;
+ }
+ .float-right{
+ 	float:right;
+ }
+ .w3-button{
+ 	border-radius: 10px;
+ }
+ .w3-input{
+ 	margin-bottom: 10px;
+ }
+ .custom-icon{
+ 	margin: 5px 6px 5px 0px;
+ 	font-size: 20px!important;
+ }
+ .mute_img_wally{
+	width: 40px;
+    height:40px;
+    cursor: pointer;
+    background: url("../../assets/mute.png")  no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.mute_img_wally:hover{
+	width: 40px;
+    height:40px;
+    cursor: pointer;
+    /*background: url("assets/icons/mute-hover.png")  no-repeat;*/
+    background-position: center;
+    background-size: contain;
+}
+.mute_img_wally_active{
+	width: 40px;
+    height:40px;
+    cursor: pointer;
+    background: url("../../assets/speaker_off.png")  no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.speak_img_wally{
+	width: 40px;
+    height:40px;
+    cursor: pointer;
+    background: url("../../assets/speak.png")  no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.speak_img_wally:hover{
+	width: 40px;
+    height:40px;
+    cursor: pointer;
+    background: url("../../assets/speak-hover.png")  no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.speak_img_wally_active{
+	width: 40px;
+    height:40px;
+    cursor: pointer;
+    background: url("../../assets/speaker_on.png")  no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.mic_img_wally_active1 {
+	width: 40px;
+    height:40px;
+    cursor: pointer;
+    background: url("../../assets/Mic_active.png")  no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.dashboard-content{
+    max-height: calc(100vh - 10vh);
+}
+.listening {
+    animation: blink 1s;
+    animation-iteration-count: infinite;
+}
+@keyframes  blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.not_listening {
+    opacity: 1;
+}
+
+/**
+ * Created By : Inf-Wm Account
+ */

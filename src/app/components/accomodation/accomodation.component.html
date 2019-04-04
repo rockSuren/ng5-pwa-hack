@@ -1,0 +1,234 @@
+<!-- Created By : Inf-Wm Account -->
+
+<div class="w3-container" *ngIf="studentAddForm">
+
+    <div class="w3-panel w3-round-small w3-teal">
+        <h3>
+            <span>Accommodation</span>
+            <a routerLink="/" class="w3-button w3-deep-orange custom-button">
+                <i class="w3-medium fa fa-chevron-left"></i> Back</a>
+        </h3>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <img height="100px" *ngIf="showTimer" width="100px" style="text-align: center;margin-top: 250px;
+        position: fixed;
+        z-index: 100;" src="assets/loader2.gif">
+      </div>
+
+    <mat-card  *ngIf="!bookingSuccess">
+        <form class="w3-container" [formGroup]="studentAddForm" (ngSubmit)="doRegister()">
+            <mat-card-content>
+                <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="100">
+                    <div class="w3-text-gray">
+                        <b>Travelers</b>
+                    </div>
+
+                    <input class="w3-input w3-border" type="text" style="width:100%" formControlName="first_name">
+
+                </div>
+
+                <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="100">
+                    <div fxLayout="row" class="w3-text-gray">
+                        <b>City</b>
+                    </div>
+                    <select fxLayout="row" class="w3-input w3-border" style="width:100%" type="text" formControlName="last_name">
+                        <option *ngFor="let item of city" [value]="item">{{item}}</option>
+                    </select>
+                </div>
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row" class="w3-text-gray">
+                            <b>Check-in date and time</b>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+
+                            <div fxLayout="column" fxFlex="50">
+                                <input id="checkindate" matInput [matDatepicker]="Inpicker" style="width:100%" formControlName="first_name" placeholder="MM/DD/YYYY">
+                            </div>
+                            <div fxLayout="column" fxFlex="10">
+                                <mat-datepicker-toggle style="margin-top:-8px" matSuffix [for]="Inpicker"></mat-datepicker-toggle>
+                                <mat-datepicker #Inpicker></mat-datepicker>
+                            </div>
+                            <div fxLayout="column" fxFlex=30>
+                                <input type="time" id="checkintime" matInput style="width:100%" formControlName="first_name" placeholder="HH:MM">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row" class="w3-text-gray">
+                            <b>Check-out date and time</b>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <div fxLayout="column" fxFlex="50">
+                                <input id="checkoutdate" matInput [matDatepicker]="outPicker" style="width:100%" formControlName="first_name" placeholder="MM/DD/YYYY">
+                            </div>
+                            <div fxLayout="column" fxFlex="10">
+                                <mat-datepicker-toggle style="margin-top:-8px" matSuffix [for]="outPicker"></mat-datepicker-toggle>
+                                <mat-datepicker #outPicker></mat-datepicker>
+                            </div>
+                            <div fxLayout="column" fxFlex=30>
+                                <input type="time" id="checkouttime" matInput style="width:100%" formControlName="first_name" placeholder="HH:MM">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Purpose</b>
+                            </label>
+                        </div>
+
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="last_name">
+                                <option *ngFor="let item of purpose" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Desk</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="last_name">
+                                <option *ngFor="let item of desk" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>GuestHouse</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <select class="w3-input w3-border" type="text" style="width:100%" formControlName="last_name">
+                                <option *ngFor="let item of guesthouse" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Project Code</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <input class="w3-input w3-border" type="text" style="width:100%" formControlName="first_name">
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap.gt-sm="100px" fxLayoutGap.lt-sm="10px">
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Approver</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row" style="align-items: center;"                        >
+                            <input class="w3-input w3-border" type="text" style="width:65%" formControlName="first_name"><label>&nbsp;@infosys.com</label>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="start" fxFlex.gt-sm="40" fxFlex.lt-sm="90">
+                        <div fxLayout="row">
+                            <label class="w3-text-gray">
+                                <b>Remarks</b>
+                            </label>
+                        </div>
+                        <div fxLayout="row">
+                            <input class="w3-input w3-border" type="text" style="width:100%" formControlName="first_name">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+            </mat-card-content>
+        
+        <div fxFlex *ngIf="hotels.length>0" style="margin-top:2vw">
+            <div fxFlex class="warning">
+             *****ECC Accommodation is full .Please choose any of below accommodation*****
+            </div>
+            <mat-card fxFlex *ngFor="let hotel of hotels;let i=index" class="row">
+                <div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutAlign="center center">
+                    <div fxFlex=30>
+                                <p>
+                                    <i class="material-icons">hotel</i>
+                                    <span class=subtext>{{hotel.hotelName}}</span>
+                                </p>
+                                <p>{{hotel.hotelArea}}</p>
+                    </div>
+                    <div fxFlex=30>
+                        <div fxFlex fxLayout="column">
+                            <div fxFlex=70>
+                                <span>
+                                    <i class="material-icons">fitness_center</i>
+                                    <i class="material-icons">signal_wifi_4_bar</i>
+                                    <i class="material-icons">room_service</i>
+                                    <i class="material-icons">restaurant</i>
+                                    <i class="material-icons" (click)="lightbox_open();">360</i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxFlex=30>
+                        <div fxFlex>
+                            <span> {{hotel.rating}} Reviews </span><br>
+                            <span style="display:inline-block">Rating :{{hotel.reviews}}</span><br>
+                            <span> Hotel Price :{{hotel.price}}</span>
+                        </div>
+                    </div>
+                    <div fxFlex=10 fxLayoutAlign="start start">
+                        <mat-checkbox (change)="selected(i)" [checked]='hotel.checked'></mat-checkbox>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <button class="w3-button w3-deep-orange" type="submit" *ngIf="hotels.length==0">
+                <span *ngIf="index == undefined">Proceed</span>
+                <span *ngIf="index != undefined">Update</span>
+                <i class="w3-medium fa fa-check"></i>
+            </button><br><br>
+            <button class="w3-button w3-deep-orange" (click)="submit()"  *ngIf="hotels.length>0">
+                    <span >Submit</span>
+             </button>
+            </form>
+    </mat-card>
+    <mat-card *ngIf="bookingSuccess && !showTimer">
+            <mat-card-content >
+                <div fxFlex fxLayout="column" fxLayoutAlign="center center" style="font-size: 24px">
+                    <div fxFlex=10><i class="material-icons"  style="font-size:70px !important ;color:green">check_circle_outline</i></div>
+                    <div fxFlex=10>Booking is confirmed!!</div>
+                    <div fxFlex=10>Please Find the below details !!</div>
+                    <div fxFlex=10>Hotel Name: {{bookedhotel.hotelName}}</div>
+                    <div fxFlex=10>Hotel Area: {{bookedhotel.hotelArea}}</div>
+                    <div fxFlex=10>Room Price: {{bookedhotel.price}}</div>
+                </div>
+            </mat-card-content>
+    
+        </mat-card>
+</div>
+<div id="light">
+        <a class="boxclose" id="boxclose" (click)="lightbox_close();"></a>
+        <video id="VisaChipCardVideo" width="600" controls>
+            <!--<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">-->
+                <source src="assets/Hotel.MOV" type="video/mp4">
+            <!--Browser does not support <video> tag -->
+          </video>
+      </div>
+      
+      <div id="fade" (click)="lightbox_close();"></div>
+      
+      <!--<div>
+        <button type="button" (click)="lightbox_open();">Watch video</button>
+      </div>-->
+
+<!-- Created By : Inf-Wm Account -->

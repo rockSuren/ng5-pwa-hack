@@ -1,0 +1,21 @@
+/*Created By : Inf-Wm Account*/
+
+.align-center{
+	width: 40%;
+	margin: auto;
+}
+.align-center-mob{
+	width: 85%;
+	margin: auto;
+}
+.login-card{
+	margin-top: 5%;
+	border-radius: 15px;
+}
+.logo-mob{
+	margin:30px 20px;
+	width: 174px !important;
+	height: 58px !important;
+}
+
+/*Created By : Inf-Wm Account*/

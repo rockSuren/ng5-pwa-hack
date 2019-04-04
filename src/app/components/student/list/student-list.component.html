@@ -1,0 +1,121 @@
+<!-- Created By : Inf-Wm Account -->
+
+<div class="w3-container" ngClass.xs="w3-container-mob" *ngIf="studentListData" style="background-color: aliceblue">
+	<div class="w3-panel w3-round-small w3-teal">
+		<h3>AHD Requests <!--<button routerLink="/add" class="w3-button w3-orange custom-button"><i class="w3-medium  fa fa-plus"></i> Add New Employee</button>--></h3>
+	</div>
+	<span><i class="w3-medium fa fa-search"></i> Search : <input class="" type="text" [(ngModel)]='filterData'></span>
+
+	<div class="w3-panel w3-green" *ngIf="(studentListData | filter:filterData).length == 0">
+		<p><span *ngIf="!filterData"> No requests pending action</span> </p>
+		<p><span *ngIf="filterData"> No matching results</span> </p>
+	</div>
+	<div class="w3-panel w3-light-grey w3-padding-16 w3-card-2" *ngIf="(studentListData | filter:filterData | filter:filterData).length != 0">
+		<table class="w3-table w3-striped w3-bordered" fxShow fxHide.lt-md="true">
+			<tr>
+				<th><i class="w3-medium"></i> Request No.</th>
+			
+				<th><i class="w3-medium"></i> Assignee</th>
+				<th><i class="w3-medium"></i> Category</th>
+				<th><i class="w3-medium"></i> Software</th>
+				
+			</tr>
+			<tr *ngFor="let student of studentListData | filter:filterData; index as i;" appHighlightStudent>
+				<td>{{student.id}}</td>
+				<td class="pointer" [routerLink]="['detail', i]">{{student.first_name}} </td>
+				<td class="pointer" [routerLink]="['detail', i]">{{student.last_name}}</td>
+				<td class="pointer" [routerLink]="['detail', i]">{{student.email}}</td>
+								
+			</tr>
+		</table>
+		<div fxFlex class="row1" fxHide fxShow.lt-md="true">
+			<div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutGap.xs=4vw>
+	
+			<div fxFlex=15>
+				<div fxFlex fxLayout="column">
+				<div fxFlex=70>
+					<span style="font-weight: bold"> iTravel No.</span>
+				</div>
+				</div>
+			</div>
+	
+	
+			<div fxFlex=15>
+				<div fxFlex fxLayout="column">
+				<div fxFlex=70>
+					
+					<span style="font-weight: bold">Name</span>
+				
+				</div>
+				<div fxFlex=30>
+				
+				</div>
+				</div>
+			</div>
+	
+			<div fxFlex=15 fxFlex.xs=17>
+				<div fxFlex>
+				<span style="font-weight: bold">Request Type</span>
+	
+				</div>
+			</div>
+	
+			<div fxFlex=15 >
+				<div fxFlex> 
+				<span style="font-weight: bold">Emp Id</span>
+				</div>
+			</div>	
+		</div>
+	</div>	
+	<div fxFlex  style="margin-top:2vw" *ngFor = "let student of studentListData | filter:filterData; index as i;" fxHide fxShow.lt-md="true">						
+		<div fxFlex class="row1">
+				<div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutGap.xs=4vw>
+		
+				<div fxFlex=15>
+					<div fxFlex fxLayout="column">
+					<div fxFlex=70>
+							<div fxFlex fxLayout="column">
+						<span class=subtext>{{student.id}}</span>						
+						</div>
+					</div>
+					</div>
+				</div>
+		
+		
+				<div fxFlex=15>
+					<div fxFlex fxLayout="column">
+					<div fxFlex=70>
+						<span  class.lt-md="maintextxs" class.lg="maintext">{{student.first_name}}
+						<span >{{student.last_name}}</span>
+						</span>
+					</div>		
+					</div>
+				</div>		
+				<div fxFlex=15 style="word-break: break-word" >
+					<div fxFlex> 
+					<span>{{student.reqType}}</span>
+					</div>
+				</div>
+				<div fxFlex=15 >
+					<div fxFlex> 
+					<span>{{student.phone}}</span>
+					</div>
+				</div>
+				<div fxFlex=15 >
+					<div fxFlex fxLayout="column" fxLayoutGap="1vw">
+					<div fxFlex=50>
+						<button (click)="approveRequest(i);" class="w3-button-mob w3-deep-orange">Approve</button>
+					</div>
+					<div fxFlex=50>
+						<button (click)="deleteStudent(i);" class="w3-button-mob w3-red">Reject</button>
+					</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+
+<!-- Created By : Inf-Wm Account -->

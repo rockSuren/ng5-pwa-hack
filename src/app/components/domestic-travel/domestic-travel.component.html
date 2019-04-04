@@ -1,0 +1,296 @@
+<div class="w3-container" >
+  <div class="w3-panel w3-round-small w3-teal">
+      <h3> Domestic / International Trip Booking <button  class="w3-button w3-orange " style="float:right" (click)="toggleChat=!toggleChat"><i class="material-icons" style="float:right">chat_bubble</i> </button></h3>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <img height="100px" *ngIf="showTimer" width="100px" style="text-align: center;margin-top: 250px;
+      position: fixed;
+      z-index: 100;" src="assets/loader2.gif">
+    </div>
+    <div class="frame" ngStyle.lt-md="width:90vw" id="bot" *ngIf="toggleChat" >
+        <app-bot></app-bot>
+     </div>
+
+  <mat-card style="margin:5vw" class="card" *ngIf="!bookingSuccess">
+    <mat-card-header fxLayoutAlign="center center">
+    </mat-card-header>
+    <mat-card-content>
+      <div fxFlex fxLayout="column">
+        <form [formGroup]="travelForm">
+          <div fxFlex fxLayout="row" fxLayoutAlign="center center" style="width:90%">
+            <mat-radio-group formControlName="travelType">
+              <mat-radio-button value="1" style="margin-right:2vw">Domestic</mat-radio-button>
+              <mat-radio-button value="2">International </mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div fxFlex fxLayout.lg="row" fxLayout=column fxLayoutAlign="center center">
+            <div fxFlex=30>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="From:" formControlName="source">
+              </mat-form-field>
+            </div>
+            <div fxFlex=30>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="To:" formControlName="destination">
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex fxLayout.lg="row" fxLayout=column fxLayoutAlign="center center">
+            <div fxFlex=30>
+              <mat-form-field fxFlex>
+                <input matInput formControlName=stDate [matDatepicker]="picker1" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div fxFlex=30>
+              <mat-form-field fxFlex>
+                <input matInput formControlName=RtrnDt [matDatepicker]="picker2" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex fxLayout.lg="row" fxLayout=column fxLayoutAlign="center center">
+            <mat-form-field fxFlex=30>
+              <mat-select placeholder="No. Of Travellers" formControlName="numOfPsgnr">
+                <mat-option *ngFor="let i of [1,2,3,4,5]" [value]="i">{{i}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div fxFlex=30 fxFlexFill>&nbsp;</div>
+          </div>
+          <div fxFlex fxLayout.lg="row" fxLayout=column fxLayoutAlign="center center">
+            <mat-form-field fxFlex=30>
+              <mat-select placeholder="Agent (Optional)" formControlName="numOfPsgnr">
+                <mat-option *ngFor="let agency of agencies" [value]="agency" [matTooltip]="agenciesReview[agency]" matTooltipClass="tooltip"
+                matTooltipPosition="after"><span>{{agency}} </span>
+                <span class="stars-outer"><span class="stars-inner"  [style.width.%]="agenciesRating[agency]"></span></span>               
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div fxFlex=30 fxFlexFill>&nbsp;</div>
+          </div>
+          <div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutAlign="center center" *ngIf="travelForm.get('travelType').value === '1'">
+              <mat-checkbox fxFlex=50 (change)="change($event)" formControlName="chk" >Do You Want to have Cash in Advance?</mat-checkbox>
+              <mat-form-field *ngIf="advAmt" fxFlex=30>
+                  <mat-select  placeholder="Payment Mode" formControlName="paymentType" (change)="changechk($event)">
+                    <mat-option  *ngFor="let i of ['Paytm','Card','Cash']" [value]="i">{{i}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div fxFlex=30 fxFlexFill>&nbsp;</div>
+              
+            </div>
+
+            <div fxFlex fxLayout="row" fxLayoutGap=1vw fxLayoutAlign="center center" *ngIf="travelForm.get('travelType').value === '2'">
+              <mat-checkbox fxFlex=50 (change)="change($event)" formControlName="chk" >Do You Want to have Cash in Advance?</mat-checkbox>
+              <mat-form-field *ngIf="advAmt" fxFlex=30>
+                  <mat-select  placeholder="Payment Mode" formControlName="paymentType" (change)="changechk($event)">
+                    <mat-option  *ngFor="let i of ['Travel Card']" [value]="i">{{i}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div fxFlex=30 fxFlexFill>&nbsp;</div>
+              
+            </div>
+          <div fxFlex fxLayout.lg="row" fxLayout=column fxLayoutAlign="center center">
+              
+              <div *ngIf="payType === 'Card'  && travelForm.get('travelType').value === '1'" fxFlex=30>
+                  <mat-card class="example-card">
+                      <img mat-card-image src="assets/card.jpg" style="width: 130%;height: 100%" >
+                      <mat-card-content>
+                          <label style="font-weight: bold">Balance:</label><img style="padding-top: 3px" src="assets/rupee.png">5000
+                    </mat-card-content>
+                    </mat-card>
+                    <br/>
+              </div>
+
+            </div>
+
+            <div *ngIf="payType === 'Travel Card' && travelForm.get('travelType').value === '2'" fxLayout="row" fxLayoutGap="40px" fxLayoutAlign="center center">
+            
+                <mat-card class="example-card">
+                    <img mat-card-image src="assets/card.jpg" style="width: 130%;height: 100%" >
+                    <mat-card-content>
+                        <label style="font-weight: bold">Balance:</label><img style="padding-top: 3px" src="assets/rupee.png">200000
+                  </mat-card-content>
+                  </mat-card>
+                
+                
+                  <mat-card class="example-card">
+                    <img mat-card-image src="assets/gold-card.png" style="width: 130%;height: 100%" >
+                    <mat-card-content>
+                        <label style="font-weight: bold">Balance:</label><img style="padding-top: 3px" src="assets/rupee.png">200000
+                  </mat-card-content>
+                  </mat-card>
+                  
+                  <br/>
+            
+          </div>
+
+
+            <div fxFlex fxLayout.lg="row" fxLayout=column fxLayoutAlign="center center" *ngIf="payType === 'Cash'">
+              
+                <div fxFlex=30>
+                    <mat-form-field fxFlex>
+                      <input matInput placeholder="Amount:" formControlName="source">
+                    </mat-form-field>
+                  </div>
+              </div>
+              <div fxFlex fxLayout.lg="row" fxLayout=column fxLayoutAlign="center center" *ngIf="payType === 'Paytm'">
+              
+                  <div fxFlex=30>
+                      <mat-form-field fxFlex>
+                        <input matInput placeholder="UPI:" formControlName="source">
+                      </mat-form-field>
+                    </div>
+              
+                </div>
+          <div fxFlex fxLayout="row" fxLayoutAlign="center center" style="margin-top:10px;">
+            <button type="submit" (click)="fetchFlights()" class="w3-button w3-deep-orange">Proceed</button>
+          </div>
+        </form>
+      </div>
+      <div fxFlex *ngIf="flights.length>0 && !showTimer && false" style="margin-top:2vw">
+        <div fxFlex *ngFor="let flight of flights" class="row">
+          <div fxFlex fxLayout="row" fxLayoutGap=2vw>
+  
+            <div fxFlex=15>
+              <div fxFlex fxLayout="column">
+                <div fxFlex=70>
+                  <i class="material-icons">flight_takeoff</i>
+                </div>
+                <div fxFlex=30>
+                  <span class=subtext>{{flight.airlines}}</span>
+                </div>
+              </div>
+            </div>
+  
+  
+            <div fxFlex=15>
+              <div fxFlex fxLayout="column">
+                <div fxFlex=70>
+                  <span  class.lt-md="maintextxs" class.lg="maintext">{{flight.depCode}}
+                    <span class="bold">{{flight.depTime}}</span>
+                  </span>
+                </div>
+                <div fxFlex=30>
+                  <span class=subtext>{{flight.depCity}} ,{{flight.depCountry}}</span>
+                </div>
+              </div>
+            </div>
+  
+            <div fxFlex=15>
+              <div fxFlex fxHide.xs>
+                <span>{{flight.depDate}}</span>
+  
+              </div>
+            </div>
+  
+            <div fxFlex=15 >
+              <div fxFlex> 
+                <span>{{flight.travelTime}} (Non-Stop)</span>
+              </div>
+            </div>
+  
+            <div fxFlex=15 >
+              <div fxFlex fxLayout="column">
+                <div fxFlex=70>
+                  <span  class.lt-md="maintextxs" class.lg="maintext">{{flight.arrCode}}
+                    <span class="bold">{{flight.arrTime}}</span>
+                  </span>
+                </div>
+                <div fxFlex=30>
+                  <span class=subtext>{{flight.arrCity}} ,{{flight.arrCountry}}</span>
+                </div>
+              </div>
+            </div>
+            <div fxFlex=15>
+              <div fxFlex fxHide.xs>
+                <span>{{flight.arrDate}}</span>
+  
+              </div>
+            </div>
+  
+            <div fxFlex=15 fxLayoutAlign="end start">
+              <div fxFlex>
+                <span>{{flight.totalFare}}</span>
+              </div>
+            </div>
+  
+            <div fxFlex=15 fxLayoutAlign="end start">
+              
+            <mat-checkbox (click)="handleSelectedFlight(flight)"></mat-checkbox>
+  
+            </div>
+  
+  
+          </div>
+        </div>
+      </div>
+
+      <div fxFlex fxLayout="row" fxLayoutAlign="center center" *ngIf="selectedFlight!==null && selectedFlight!==undefined" style="margin-top:10px;">
+        <button type="submit" (click)="bookFlights()" class="w3-button w3-deep-orange">Confirm
+      
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="bookingSuccess  && !showTimer">
+    <mat-card-content style="width:100%">
+        <div fxFlex fxLayout="column" style="font-size:22px" fxLayoutAlign="center center">
+            <div fxFlex=10>
+                <i class="material-icons" style="font-size:70px !important ;color:green">check_circle_outline</i>
+            </div>
+            <div fxFlex=10>Booking is confirmed!!</div>
+            <div fxFlex=10>Please Find the below details !!</div>
+            <div fxFlex=100 fxLayout="row" style="width:100%">
+              <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+              <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Flight Name</div>
+              <div fxFlex=10>:</div>
+              <div fxFlex=40>{{selectedFlight.airlines}}</div>
+          </div>
+          <div fxFlex=100 fxLayout="row" style="width:100%">
+            <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+            <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Flight No</div>
+            <div fxFlex=10>:</div>
+            <div fxFlex=40>{{selectedFlight.depCode}}</div>
+        </div>
+            <div fxFlex=100 fxLayout="row" style="width:100%">
+                <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Travel Date</div>
+                <div fxFlex=10>:</div>
+                <div fxFlex=40>{{selectedFlight.depDate}}</div>
+            </div>
+            <div fxFlex=100 fxLayout="row" style="width:100%">
+                <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Travel Time</div>
+                <div fxFlex=10>:</div>
+                <div fxFlex=40>{{selectedFlight.depTime}}</div>
+            </div>
+            <div fxFlex=100 fxLayout="row" style="width:100%">
+              <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+              <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Journey Time</div>
+              <div fxFlex=10>:</div>
+              <div fxFlex=40>{{selectedFlight.travelTime}}</div>
+          </div>
+            <div fxFlex=100 fxLayout="row" style="width:100%">
+                <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                <div fxFlex=20 fxFlex.lt-md=50  style="font-weight:bold">Source</div>
+                <div fxFlex=10>:</div>
+                <div fxFlex=40>{{selectedFlight.depCity}}</div>
+            </div>
+            <div fxFlex=100 fxLayout="row" style="width:100%">
+                <div fxFlex=30 fxHide.lt-md>&nbsp;</div>
+                <div fxFlex=20  fxFlex.lt-md=50  style="font-weight:bold">Destination</div>
+                <div fxFlex=10>:</div>
+                <div fxFlex=40>{{selectedFlight.arrCity}}</div>
+            </div>
+            
+        </div>
+    </mat-card-content>
+  
+  </mat-card>
+  </div>

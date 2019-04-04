@@ -1,0 +1,22 @@
+.sosbutton{
+    height:100px;
+    width:100px;
+}
+.caution {
+    color:red;
+    font-size: 50px;
+    text-align: center;
+}
+
+.success{
+    margin:20%;
+    background-color:lightgreen;
+    text-align: center;
+    font-weight: bold;
+
+}
+.caution-mob{
+    color:red;
+    font-size: 30px;
+    text-align: center; 
+}

@@ -1,0 +1,39 @@
+<!-- Created By : Inf-Wm Account -->
+
+<div class="w3-container" *ngIf="studentDetail">
+	<div class="w3-panel w3-round-small w3-teal">
+		<h3>Employee Details <!--<button [routerLink]="['/update', index]" class="w3-button w3-blue custom-button"> <i class="w3-medium fa fa-pencil"></i> Edit</button>--> <button routerLink="/" class="w3-button w3-orange custom-button margin-right"> <i class="w3-medium fa fa-chevron-left"></i> Back</button></h3>
+	</div>
+	<div class=" w3-card custom-card"><br>
+		<h3 class="text-center">{{studentDetail.id}}</h3>
+		<hr>
+		<table class="w3-table w3-bordered">
+			<tr>
+				<td><i class="w3-medium"></i>First Name</td>
+				<td>: <b>{{studentDetail.first_name}}</b></td>
+			</tr>
+			<tr>
+				<td><i class="w3-medium"></i>Last name</td>
+				<td>: <b>{{studentDetail.last_name}}</b></td>
+			</tr>
+			<tr>
+				<td><i class="w3-medium"></i> Email Address</td>
+				<td>: <b>{{studentDetail.email}}</b></td>
+			</tr>
+			<tr>
+				<td><i class="w3-medium"></i> Employee ID</td>
+				<td>: <b>{{studentDetail.phone}}</b></td>
+			</tr>
+			<tr>
+				<td><i class="w3-medium"></i> Project</td>
+				<td>: <b>{{studentDetail.project}}</b></td>
+			</tr>
+			<tr>
+				<td><i class="w3-medium"></i> Request Type</td>
+				<td>: <b>{{studentDetail.reqType}}</b></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<!-- Created By : Inf-Wm Account -->

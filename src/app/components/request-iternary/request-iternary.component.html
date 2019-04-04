@@ -1,0 +1,464 @@
+<div fxLayout = "column" ngStyle.gt-md="margin:20px 20px;">
+        <div class="w3-panel w3-round-small w3-teal">
+          <h3>Request Itinerary  Options<button routerLink="/agentrequests" class="w3-button w3-orange custom-button margin-right"> <i class="w3-medium fa fa-chevron-left"></i> Back</button></h3>
+        </div>
+        <div>
+          <h5>Requests Number : D28151523</h5>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <img height="100px" *ngIf="showTimer" width="100px" style="text-align: center;margin-top: 250px;
+            position: fixed;
+            z-index: 100;" src="assets/loader2.gif">
+          </div>
+      
+        <mat-card style="padding:10px !important">
+          <mat-card-content>
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap.xs="2vw" *ngFor = "let emp of employeeListData;index as i">	
+              <div fxLayout="column" fxFlex="40" fxFlex.xs="30" fxLayoutGap.xs="3vw">
+                <div fxFlex="30">
+                    <label style="font-weight: bold">	Emp Name:</label>	{{emp.name}}
+                </div>
+                <div fxFlex="30">
+                    <label style="font-weight: bold">Emp Id:</label>	{{emp.empId}}
+                </div>
+                <div fxFlex="30">
+                    <label style="font-weight: bold">	Type:</label>	{{emp.type}}
+                </div>
+              </div>
+      
+              <div fxLayout="column" fxFlex="40" fxFlex.xs="36">
+                  <div fxFlex="30">
+                      <label style="font-weight: bold">Departure City:</label>	{{emp.from}}
+                  </div>
+                  <div fxFlex="30">
+                      <label style="font-weight: bold">Departure Date:</label>	{{emp.dateIn}}
+                  </div>
+                  <div fxFlex="30">
+                      <label style="font-weight: bold">Departure Time:</label>	{{emp.timeIn}}
+                  </div>
+                </div>
+              <div fxLayout="column" fxFlex="20" fxFlex.xs="32">
+                  <div fxFlex="30" style="word-break: break-word">
+                      <label style="font-weight: bold;">Arrival City:</label>	{{emp.to}}
+                  </div>
+                  <div fxFlex="30">
+                      <label style="font-weight: bold">Arrival Date:</label>	{{emp.dateOut}}
+                  </div>
+                  <div fxFlex="30">
+                      <label style="font-weight: bold">Arrival Time:</label>	{{emp.timeOut}}
+                  </div>
+              </div>
+              
+            </div>	
+            <div>
+              <h4>Preferences</h4>
+              <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap.xs="2vw">	
+                  <div fxLayout="column" fxFlex="40">
+                    <div fxFlex="30">
+                        <label style="font-weight: bold">	Cab Sharing:</label>&nbsp;&nbsp;<mat-checkbox [checked]="true"></mat-checkbox>
+                    </div>
+                    <div fxFlex="30">
+                        <label style="font-weight: bold">Meal Preferences:</label>&nbsp;Asian Vegetarian
+                    </div>              
+                  </div>
+          
+                  <div fxLayout="column" fxFlex="40">
+                      <div fxFlex="30">
+                          <label style="font-weight: bold">Onward Timing:</label>4pm-8pm
+                      </div>
+                      <div fxFlex="30">
+                          <label style="font-weight: bold">Return Timing:</label>5am-8am
+                      </div>                
+                    </div>
+                </div>
+            </div>
+            <h4>Flight Options</h4>
+            <h6 style="font-weight: bold">Onward Journey:</h6>
+            <div style="background-color: lightgray" fxShow fxHide.lt-md="true">
+                
+               
+                <div fxLayout="row" fxLayoutGap="1vw">  
+                    <div></div>          
+                      <div fxFlex="10">
+                          <div class="w3-text-gray">
+                              <b>Flight Name</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Indigo">
+                      </div>
+                      <div fxFlex="10">
+                          <div class="w3-text-gray">
+                              <b>Flight Number</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="6E512">
+                      </div>
+                      <div fxFlex="10">
+                          <div class="w3-text-gray">
+                              <b>Travel Date</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="25/03/2019">
+                      </div>
+                      <div fxFlex="10"> 
+                          <div class="w3-text-gray">
+                              <b>Fare(INR)</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="1680">
+                      </div> 
+                  
+                        <div fxFlex="10">
+                            <div class="w3-text-gray">
+                                <b>From</b>
+                            </div>
+                            <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Chennai">
+                        </div>
+                        <div fxFlex="10">
+                            <div class="w3-text-gray">
+                                <b>To</b>
+                            </div>
+                            <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Bangalore" >
+                        </div>
+                        <div fxFlex="10">
+                            <div class="w3-text-gray">
+                                <b>Travel Time</b>
+                            </div>
+                            <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="0h55m"> 
+                        </div>                  
+                </div>
+                <div fxLayout="row" fxLayoutGap="1vw">    
+                    <div></div>                  
+                    <div fxFlex="10">
+                      
+                        <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Spice Jet" >
+                    </div>
+                    <div fxFlex="10">
+                        
+                        <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="SG520">
+                    </div>
+                    <div fxFlex="10">
+                        
+                        <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="25/03/2019">
+                    </div>
+                    <div fxFlex="10"> 
+                        
+                        <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="1500">
+                    </div> 
+                
+                      <div fxFlex="10">
+                          
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Bangalore">
+                      </div>
+                      <div fxFlex="10">
+                         
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Hyderabad" >
+                      </div>
+                      <div fxFlex="10">
+                          
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="0h50m"> 
+                      </div>
+                      <div fxLayout="row" >
+                          <i class="material-icons" style="color: green;cursor: pointer;">add_circle</i> <label>Add Flight Option</label>
+                      </div>
+              </div>
+            </div>
+            <!-- mobile view -->
+            <div style="background-color: lightgray" fxHide fxShow.lt-md="true">
+                
+               
+                <div fxLayout="column" fxLayoutGap="1vw">   
+                  <div fxLayout="row" fxLayoutGap="1vw">
+                      <div fxFlex="20">
+                          <div class="w3-text-gray">
+                              <b>Flight Name</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%" value="Indigo">
+                      </div>
+                      <div fxFlex="20">
+                          <div class="w3-text-gray">
+                              <b>Flight Number</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%" value="6E512">
+                      </div>
+                      <div fxFlex="20">
+                          <div class="w3-text-gray">
+                              <b>Travel Date</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%" value="25/03/2019">
+                      </div>
+                      <div fxFlex="20"> 
+                          <div class="w3-text-gray" style="padding-bottom: 6vw">
+                              <b>Fare(INR)</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%" value="1680">
+                      </div> 
+                    </div> 
+                    <div fxLayout="row" fxLayoutGap="1vw">
+                        <div fxFlex="23">
+                            <div class="w3-text-gray" style="padding-bottom: 6vw">
+                                <b>From</b>
+                            </div>
+                            <input class="w3-input w3-border" type="text" style="width:100%" value="Chennai">
+                        </div>
+                        <div fxFlex="20">
+                            <div class="w3-text-gray"  style="padding-bottom: 6vw">
+                                <b>To</b>
+                            </div>
+                            <input class="w3-input w3-border" type="text" style="width:100%" value="Bangalore" >
+                        </div>
+                        <div fxFlex="20">
+                            <div class="w3-text-gray">
+                                <b>Travel Time</b>
+                            </div>
+                            <input class="w3-input w3-border" type="text" style="width:100%" value="0h55m"> 
+                        </div>                  
+                      </div>          
+                </div>
+                <div fxLayout="column" fxLayoutGap="1vw"> 
+                    <div fxLayout="row" fxLayoutGap="1vw">             
+                    <div fxFlex="20">
+                        <div class="w3-text-gray">
+                            <b>Flight Name</b>
+                        </div> 
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="Spice Jet" >
+                    </div>
+                    <div fxFlex="20">
+                        <div class="w3-text-gray">
+                            <b>Flight Number</b>
+                        </div> 
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="SG520">
+                    </div>
+                    <div fxFlex="20">
+                        <div class="w3-text-gray">
+                            <b>Travel Date</b>
+                        </div>
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="25/03/2019">
+                    </div>
+                    <div fxFlex="20"> 
+                        <div class="w3-text-gray" style="padding-bottom: 6vw">
+                            <b>Fare(INR)</b>
+                        </div>
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="1500">
+                    </div> 
+                </div>
+                <div fxLayout="row" fxLayoutGap="1vw">
+                      <div fxFlex="23">
+                          <div class="w3-text-gray"  style="padding-bottom: 6vw">
+                              <b>From</b>
+                          </div> 
+                          <input class="w3-input w3-border" type="text" style="width:100%" value="Bangalore">
+                      </div>
+                      <div fxFlex="23">
+                          <div class="w3-text-gray"  style="padding-bottom: 6vw">
+                              <b>To</b>
+                          </div> 
+                          <input class="w3-input w3-border" type="text" style="width:100%" value="Hyderabad" >
+                      </div>
+                      <div fxFlex="20">
+                          <div class="w3-text-gray">
+                              <b>Travel Time</b>
+                          </div> 
+                          <input class="w3-input w3-border" type="text" style="width:100%" value="0h50m"> 
+                      </div>
+                      <div fxLayout="row" style="padding-top: 12vw">
+                          <i class="material-icons" style="color: green;cursor: pointer;">add_circle</i> <label>Add Flight Option</label>
+                      </div>
+                    </div>
+              </div>
+            </div>
+      <!-- *************************************  -->
+      <h6 style="font-weight: bold">Return Journey:</h6>
+      <div style="background-color: lightgray" fxShow fxHide.lt-md="true">
+                
+                <div fxLayout="row" fxLayoutGap="1vw"> 
+                    <div></div>                     
+                      <div fxFlex="10">
+                          <div class="w3-text-gray">
+                              <b>Flight Name</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Spice Jet" >
+                      </div>
+                      <div fxFlex="10">
+                          <div class="w3-text-gray">
+                              <b>Flight Number</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="SG711">
+                      </div>
+                      <div fxFlex="10">
+                          <div class="w3-text-gray">
+                              <b>Travel Date</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="28/03/2019">
+                      </div>
+                      <div fxFlex="10"> 
+                          <div class="w3-text-gray">
+                              <b>Fare(INR)</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="1280">
+                      </div> 
+                  
+                        <div fxFlex="10">
+                            <div class="w3-text-gray">
+                                <b>From</b>
+                            </div>
+                            <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Hyderabad">
+                        </div>
+                        <div fxFlex="10">
+                            <div class="w3-text-gray">
+                                <b>To</b>
+                            </div>
+                            <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Bangalore" >
+                        </div>
+                        <div fxFlex="10">
+                            <div class="w3-text-gray">
+                                <b>Travel Time</b>
+                            </div>
+                            <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="0h55m"> 
+                        </div>                  
+                </div>
+                <div fxLayout="row" fxLayoutGap="1vw">              
+                  <div></div>
+                    <div fxFlex="10">
+                        
+                        <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Jet Airways" >
+                    </div>
+                    <div fxFlex="10">
+                        
+                        <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="9W640">
+                    </div>
+                    <div fxFlex="10">
+                        
+                        <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="28/03/2019">
+                    </div>
+                    <div fxFlex="10"> 
+                        
+                        <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="1500">
+                    </div> 
+                
+                      <div fxFlex="10">
+                          
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Bangalore">
+                      </div>
+                      <div fxFlex="10">
+                          
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="Chennai" >
+                      </div>
+                      <div fxFlex="10">
+                          
+                          <input class="w3-input w3-border" type="text" style="width:100%;height: 25px;" value="0h50m"> 
+                      </div>
+                      <div fxLayout="row" >
+                          <i class="material-icons" style="color: green;cursor: pointer;">add_circle</i> <label>Add Flight Option</label>
+                      </div>
+              </div>
+            </div>
+          <!-- mobile view -->
+          <div style="background-color: lightgray" fxHide fxShow.lt-md="true">
+              <div fxLayout="column" fxLayoutGap="1vw">   
+                <div fxLayout="row" fxLayoutGap="1vw">
+                    <div fxFlex="20">
+                        <div class="w3-text-gray">
+                            <b>Flight Name</b>
+                        </div>
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="Spice Jet" >
+                    </div>
+                    <div fxFlex="20">
+                        <div class="w3-text-gray">
+                            <b>Flight Number</b>
+                        </div>
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="SG711">
+                    </div>
+                    <div fxFlex="20">
+                        <div class="w3-text-gray">
+                            <b>Travel Date</b>
+                        </div>
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="28/03/2019">
+                    </div>
+                    <div fxFlex="20"> 
+                        <div class="w3-text-gray" style="padding-bottom: 6vw">
+                            <b>Fare(INR)</b>
+                        </div>
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="1280">
+                    </div> 
+                  </div>
+                  <div fxLayout="row" fxLayoutGap="1vw">
+                      <div fxFlex="23">
+                          <div class="w3-text-gray" style="padding-bottom: 6vw">
+                              <b>From</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%" value="Hyderabad">
+                      </div>
+                      <div fxFlex="23">
+                          <div class="w3-text-gray" style="padding-bottom: 6vw">
+                              <b>To</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%" value="Bangalore" >
+                      </div>
+                      <div fxFlex="20">
+                          <div class="w3-text-gray">
+                              <b>Travel Time</b>
+                          </div>
+                          <input class="w3-input w3-border" type="text" style="width:100%" value="0h55m"> 
+                      </div>                
+                    </div>
+              </div>
+              <div fxLayout="column" fxLayoutGap="1vw">  
+                  <div fxLayout="row" fxLayoutGap="1vw">            
+                  <div fxFlex="20">
+                      <div class="w3-text-gray">
+                          <b>Flight Name</b>
+                      </div>
+                      <input class="w3-input w3-border" type="text" style="width:100%" value="Jet Airways" >
+                  </div>
+                  <div fxFlex="20">
+                      <div class="w3-text-gray">
+                          <b>Flight Number</b>
+                      </div>
+                      <input class="w3-input w3-border" type="text" style="width:100%" value="9W640">
+                  </div>
+                  <div fxFlex="20">
+                      <div class="w3-text-gray">
+                          <b>Travel Date</b>
+                      </div>
+                      <input class="w3-input w3-border" type="text" style="width:100%" value="28/03/2019">
+                  </div>
+                  <div fxFlex="20"> 
+                      <div class="w3-text-gray" style="padding-bottom: 6vw">
+                          <b>Fare(INR)</b>
+                      </div>
+                      <input class="w3-input w3-border" type="text" style="width:100%" value="1500">
+                  </div>
+                </div> 
+                <div fxLayout="row" fxLayoutGap="1vw">
+                    <div fxFlex="20">
+                        <div class="w3-text-gray" style="padding-bottom: 6vw">
+                            <b>From</b>
+                        </div>  
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="Bangalore">
+                    </div>
+                    <div fxFlex="20">
+                        <div class="w3-text-gray" style="padding-bottom: 6vw">
+                            <b>To</b>
+                        </div>
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="Chennai" >
+                    </div>
+                    <div fxFlex="20">
+                        <div class="w3-text-gray">
+                            <b>Travel Time</b>
+                        </div>
+                        <input class="w3-input w3-border" type="text" style="width:100%" value="0h50m"> 
+                    </div>
+                    <div fxLayout="row" style="padding-top: 12vw">
+                        <i class="material-icons" style="color: green;cursor: pointer;">add_circle</i> <label>Add Flight Option</label>
+                    </div>
+                  </div>
+            </div>
+          </div>
+      
+            <div fxLayoutAlign="center center" style="padding-top: 1vw">
+              <button mat-raised-button class="w3-button w3-deep-orange" style="border-radius: 10px" (click)="setTimer()"> Send to Employee</button>
+            </div>
+            <div *ngIf="a && !showTimer" style="width:450px;color:green;font-size:20px" ngStyle.xs="width:440px;">
+                Itinerary  Requests Sent to Employee Successfully!
+             </div>	
+          </mat-card-content>
+        </mat-card>
+        
+      </div>

@@ -1,0 +1,30 @@
+.view-more {
+    background-color: rgba(146, 241, 189, 0.795)  
+}
+.view-less {
+background-color: white;
+}
+.apprved{
+    background: #7ac143;;
+      border-radius: 10px;
+      color: #fff;
+      text-decoration: none;
+      line-height: 24px;
+      padding: 0 10px;
+      font-size: 10px;
+      text-transform: uppercase;
+      float: right;
+  }
+  mat-expansion-panel > mat-expansion-panel-header{
+    height:auto !important;
+  padding:24px;
+    
+  }
+  .frame{
+    width: 30vw;
+    height:70vh;
+    right: 10px;
+    bottom:0px;
+    position: fixed;
+    z-index: 9999;
+   }

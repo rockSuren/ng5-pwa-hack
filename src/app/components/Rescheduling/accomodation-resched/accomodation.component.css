@@ -1,0 +1,13 @@
+.row{
+    align-items: center;
+    padding:1vw;
+    margin:1vw 0;
+    box-shadow: 6px 9px 3px 0px rgba(27, 26, 26, 0.2), 2px 8px 2px 3px rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12) !important;
+}
+
+.warning{
+    border:2px solid red;
+    padding:1vw;
+    margin-bottom:2vh;
+    text-align: center;
+}

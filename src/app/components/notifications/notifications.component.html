@@ -1,0 +1,37 @@
+<!-- Created By : Inf-Wm Account -->
+
+<div class="w3-container">
+    <div class="w3-panel w3-round-small w3-teal">
+      <h3>Notifications
+        <button routerLink="/" class="w3-button w3-deep-orange custom-button margin-right">
+          <i class="w3-medium fa fa-chevron-left"></i> Back</button>
+      </h3>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutGap=10vw style="margin-bottom:2vw">
+      <div fxFlex=20 style="text-align: center">
+        <button mat-button  class="icon"  style="background:#ffd740de" (click)="setAlert()">
+          <i class="material-icons" style="font-size:35px">add_alert</i>
+        </button>
+      </div>
+      <div fxFlex=20 style="text-align: center">
+        <button  mat-button class="icon"  style="background:lightskyblue" (click)="setInfo()">
+          <i class="material-icons" style="font-size:35px">info</i>
+        </button>
+      </div>
+      <div fxFlex=20 style="text-align: center">
+        <button   mat-button class="icon" style="background: #ff02029c"  (click)="setWarn()">
+          <i class="material-icons" style="font-size:35px">warning</i>
+        </button>
+      </div>
+    </div>
+    <div *ngFor="let noti of notificationsList | filterNotification : filterString">
+        <mat-card >
+            <mat-card-content>
+               <span style="display:inline-flex"> {{noti.message}}</span>
+            </mat-card-content>
+        </mat-card>
+        <br/>
+      </div>
+  </div>
+  
+  <!-- Created By : Inf-Wm Account -->

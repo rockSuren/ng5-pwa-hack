@@ -1,0 +1,54 @@
+<!------------------------------------------------
+  Copyright ï¿½ 2017 Infosys Limited, Bangalore, India. All Rights Reserved. 
+  Infosys believes the information in this presentation is accurate as of its publication date; 
+  such information is subject to change without notice. Infosys acknowledges the proprietary rights 
+  of other companies to the trademarks, product names and such other intellectual property rights mentioned in this document. 
+  Except as expressly permitted, neither this presentation nor any part of it may be reproduced, stored in a retrieval system, 
+  or transmitted in any form or by any means, electronic, mechanical, printing, photocopying, recording or otherwise, 
+  without the prior permission of Infosys Limited and/or any named intellectual property rights holders under this document.
+----------------------------------------------- -->
+<div class="dashboard-header">
+    <div fxFlex=100 style="position: relative ;top:0px;padding-bottom: 6px;" fxLayout="row" fxLayoutAlign="end center" >
+      
+      <div fxFlex=15   [ngClass]="{'search-box-fade': !showTile}"  fxLayoutAlign="center center" >
+            <div *ngIf="speakerEnabled !== 'true'"  class="mute_img_wally_active" (click) = "toggleSpeakerEnabled()" matTooltip="Speaker muted"></div>   
+            <div *ngIf="speakerEnabled === 'true'" class="speak_img_wally_active" (click) = "toggleSpeakerEnabled()" matTooltip="Speaker On"></div>                           
+        </div>
+        <div fxFlex=15>
+            <button color="warn"mat-icon-button (click)="toggleChat()">
+              <i class="material-icons" style="font-size:33px;" >cancel</i>
+           </button>
+         </div>  
+  </div>
+</div>
+<div  fxFlex="row" style="height:100%;">
+  <div fxLayout="row" fxLayoutGap="3vh" style="height:100%;">
+    <div fxFlex="100">
+      <div class="row1" style="height:100%;">
+        <div class="col-sm-5 col-lg-4" style="padding-right:10px; margin-top: -0.5vh;height:100%;">
+          <mat-card class="search-card-sm" style="background-color: #f9f9f9;height:80vh;">
+              
+            <mat-card-content style="height:77%;">
+              <div class="chat-container" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+                <div *ngFor="let message of messages">
+                  <app-bot-message-renderer [component-model]="message">
+                  </app-bot-message-renderer>
+                </div>
+              </div>
+              
+            </mat-card-content>
+            <div class="input-group" style="display:inline-flex;width:100%" >
+                <div  [ngClass]="{'search-box-fade': !showTile}" style="width:15%" >
+                    <div class="mic_img_wally_active1" [ngClass]="{'not_listening':!showTile && !showPersonal && !listening, 'listening':!showTile && !showPersonal && listening, 'mic_img_wally':showTile || showPersonal}" (click)="playAudio(); showTile = !showTile && showPersonal=false; activateSpeechSearch();"  matTooltip="Mic"></div>                   
+                  </div>
+                <mat-form-field style= "width: 85%;background: white" floatPlaceholder="never">
+                    <input placeholder="Type your query" autocomplete="off" autofocus=true matInput #bottext type="text" name="text" (keydown.enter)="sendMessage(msg,$event);msg='';"  [(ngModel)]="msg" (keyup)="msg!='' && msg!=null && $event.keyCode == 13 ? sendMessage(msg): ''"  >
+                  <i class="material-icons" matSuffix  (click)="sendMessage(msg);msg='';"> send </i>
+                  </mat-form-field>
+                  </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

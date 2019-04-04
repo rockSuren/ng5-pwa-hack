@@ -1,0 +1,12 @@
+/*Created By : Inf-Wm Account*/
+td{
+	    vertical-align: middle;
+}
+/*Created By : Inf-Wm Account*/
+.row{
+	align-items: center;
+	padding:1vw;
+}
+.row:nth-child(odd){
+	background: lightgray;
+}
