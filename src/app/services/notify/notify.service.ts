@@ -11,4 +11,16 @@
             console.log("sent");
         });
      }
+
+     fetchSoftwares() {
+        return this.http.get(`http://localhost:3000/api/softwares`);
+     }
+
+     fetchHardwares() {
+        return this.http.get(`http://localhost:3000/api/hardwares`);
+     }
+
+     fetchAhd() {
+        return this.http.get(`http://localhost:3000/api/ahd`);
+     }
  }

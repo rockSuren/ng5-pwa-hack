@@ -14,6 +14,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
 	title = 'Integrated iTravel System';
 
+
 	// Add few students for initial listing
 	studentsList = [
 	{	

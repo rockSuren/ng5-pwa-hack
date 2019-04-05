@@ -9,6 +9,8 @@
  import { StudentService } from '../../../services/student/student.service';
  import { routerTransition } from '../../../services/config/config.service';
 
+ import { NotifyService } from '../../../services/notify/notify.service';
+
  @Component({
  	selector: 'app-student-list',
  	templateUrl: './student-list.component.html',
@@ -19,12 +21,24 @@
 
  export class StudentListComponent implements OnInit {
  	studentList:any;
- 	studentListData:any;
- 	constructor(private studentService:StudentService,private toastr: ToastrService) { }
+	 studentListData:any;
+	 
+	 requests: any;
+	 constructor(private studentService:StudentService,private toastr: ToastrService,
+		private notifyService: NotifyService) { }
  	// Call student list function on page load 
  	ngOnInit() {
  		this.getStudentList();
+		 this.getRequests();
  	}
+
+	 getRequests() {
+		 this.notifyService.fetchAhd().subscribe(
+			 data => { this.requests = data},
+			 err => console.error(err),
+			() => console.log('done loading hardware')
+		   );
+	 }
 
  	// Get student list from services
  	getStudentList(){

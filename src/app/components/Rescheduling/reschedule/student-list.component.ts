@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { StudentService } from '../../../services/student/student.service';
 import { routerTransition } from '../../../services/config/config.service';
 import{ FormBuilder,FormGroup,FormControl,FormGroupDirective,NgForm,Validators} from '@angular/forms';
+import { NotifyService } from '../../../services/notify/notify.service';
 
 @Component({
 	selector: 'app-student-list',
@@ -27,7 +28,8 @@ export class RescheduleComponent implements OnInit {
 	flights:FlightsVO[]=new Array<FlightsVO>();
 	showFlights:boolean=false;
 	bookingSuccess:boolean=false;
-	constructor(private studentService:StudentService,private toastr: ToastrService,private formBuilder:FormBuilder) { }
+	constructor(private studentService:StudentService,
+		private toastr: ToastrService,private formBuilder:FormBuilder, private notifyService: NotifyService) { }
 	selectedFlight :FlightsVO;
 	travelForm=this.formBuilder.group({
 	   'travelType':'',
@@ -59,52 +61,62 @@ export class RescheduleComponent implements OnInit {
 
 	// Get student list success
 	fetchHardware(){
-		this.hardware = [
-			{	
-				id : "ITL-HW-DESKT-000000396877",
-				sub_class : "DESKT",
-				allocation_type : "Temporary",
-				allocation_till : "12-11-2020",
-				action:"NO",
-				gatepass:"Y"		
-			},
-			{
-				id : "ITL-HW-IPPHN-000000309347",
-				sub_class : "IPPHN",
-				allocation_type : "Software Request",
-				allocation_till : "12-11-2020",
-				action:"No",
-				gatepass:"Y"		
-			}
+		this.notifyService.fetchHardwares().subscribe(
+			data => { this.hardware = data},
+			err => console.error(err),
+		   () => console.log('done loading hardware')
+		  );
+		// this.hardware = [
+		// 	{	
+		// 		id : "ITL-HW-DESKT-000000396877",
+		// 		sub_class : "DESKT",
+		// 		allocation_type : "Temporary",
+		// 		allocation_till : "12-11-2020",
+		// 		action:"NO",
+		// 		gatepass:"Y"		
+		// 	},
+		// 	{
+		// 		id : "ITL-HW-IPPHN-000000309347",
+		// 		sub_class : "IPPHN",
+		// 		allocation_type : "Software Request",
+		// 		allocation_till : "12-11-2020",
+		// 		action:"No",
+		// 		gatepass:"Y"		
+		// 	}
 			
-			];
-		for (var i = 0; i < this.hardware.length; i++) {
-			this.hardware[i].name = this.hardware[i].first_name +' '+ this.hardware[i].last_name;
-		}
+		// 	];
+		// for (var i = 0; i < this.hardware.length; i++) {
+		// 	this.hardware[i].name = this.hardware[i].first_name +' '+ this.hardware[i].last_name;
+		// }
 	}
 	fetchSoftware(){
-		this.software = [
-			{	
-				id : "ITL-HW-DESKT-000000396877",
-				sub_class : "DESKT",
-				allocation_type : "Temporary",
-				allocation_till : "12-11-2020",
-				action:"NO",
-				gatepass:"Y"		
-			},
-			{
-				id : "ITL-HW-IPPHN-000000309347",
-				sub_class : "IPPHN",
-				allocation_type : "Software Request",
-				allocation_till : "12-11-2020",
-				action:"No",
-				gatepass:"Y"		
-			}
+		this.notifyService.fetchSoftwares().subscribe(
+			      data => { this.software = data},
+			      err => console.error(err),
+			     () => console.log('done loading softwares')
+			    );
+		// this.software = [
+		// 	{	
+		// 		id : "ITL-HW-DESKT-000000396877",
+		// 		sub_class : "DESKT",
+		// 		allocation_type : "Temporary",
+		// 		allocation_till : "12-11-2020",
+		// 		action:"NO",
+		// 		gatepass:"Y"		
+		// 	},
+		// 	{
+		// 		id : "ITL-HW-IPPHN-000000309347",
+		// 		sub_class : "IPPHN",
+		// 		allocation_type : "Software Request",
+		// 		allocation_till : "12-11-2020",
+		// 		action:"No",
+		// 		gatepass:"Y"		
+		// 	}
 			
-			];
-		for (var i = 0; i < this.hardware.length; i++) {
-			this.hardware[i].name = this.hardware[i].first_name +' '+ this.hardware[i].last_name;
-		}
+		// 	];
+		// for (var i = 0; i < this.hardware.length; i++) {
+		// 	this.hardware[i].name = this.hardware[i].first_name +' '+ this.hardware[i].last_name;
+		// }
 	}
 	bookFlights() {
 	   this.bookingSuccess = true;

@@ -9,31 +9,26 @@
 			position: fixed;
 			z-index: 100;" src="assets/loader2.gif">
 		  </div>
-		<span *ngIf=" !showFlights"><i class="w3-medium fa fa-search"></i> Search : <input class="" type="text" [(ngModel)]='filterData'></span>
+		<!-- <span *ngIf=" !showFlights"><i class="w3-medium fa fa-search"></i> Search : <input class="" type="text" [(ngModel)]='filterData'></span>
 	
 		<div class="w3-panel w3-green" *ngIf="(hardware | filter:filterData).length == 0">
 			<p><span *ngIf="!filterData"> No requests pending action</span> </p>
 			<p><span *ngIf="filterData"> No matching results</span> </p>
-		</div>
+		</div> -->
 		<h5>Software</h5>
-		<div class="w3-panel w3-light-grey w3-padding-16 w3-card-2" *ngIf="(hardware | filter:filterData | filter:filterData).length != 0 && !showFlights">
+		<div class="w3-panel w3-light-grey w3-padding-16 w3-card-2" *ngIf="(software | filter:filterData | filter:filterData).length != 0 && !showFlights">
 			<table class="w3-table w3-striped w3-bordered" fxShow fxHide.lt-md="true">
 				<tr>
-					<th><i class="w3-medium"></i>Asset Id</th>				
-					<th><i class="w3-medium"></i>Asset Sub Class</th>
-					<th><i class="w3-medium"></i> Allocation Type</th>
-					<th><i class="w3-medium"></i> Allocated Till</th>
-					<th><i class="w3-medium"></i> Action</th>
-					<th><i class="w3-medium"></i> Gatepass</th>					
+					<th><i class="w3-medium"></i>Software Name</th>				
+					<th><i class="w3-medium"></i>Asset Id</th>
+					<th><i class="w3-medium"></i>Machine Name</th>
+					<th><i class="w3-medium"></i>Installed At</th>				
 				</tr>
-				<tr *ngFor="let hrd of hardware | filter:filterData; index as i;" appHighlightStudent>
-					<td>{{hrd.id}}</td>
-					<td>{{hrd.sub_class}} </td>
-					<td>{{hrd.allocation_type}}</td>
-					<td>{{hrd.allocation_till}}</td>
-					<td>{{hrd.action}}</td>
-					<td>{{hrd.gatepass}}</td>
-				
+				<tr *ngFor="let hrd of software | filter:filterData; index as i;" appHighlightStudent>
+					<td>{{hrd.SOFTWARE_NAME}}</td>
+					<td>{{hrd.ASSET_ID}} </td>
+					<td>{{hrd.MACHINE_NAME}}</td>
+					<td>{{hrd.LAST_CHG_TS}}</td>
 				</tr>
 			</table>
 			<div fxFlex class="row1" fxHide fxShow.lt-md="true">
@@ -126,11 +121,12 @@
 					<th><i class="w3-medium"></i> Gatepass</th>					
 				</tr>
 				<tr *ngFor="let student of hardware | filter:filterData; index as i;" appHighlightStudent>
-					<td>{{student.id}}</td>
-					<td>{{student.first_name}} </td>
-					<td>{{student.last_name}}</td>
-					<td>{{student.reqType}}</td>
-					<td>{{student.phone}}</td>
+					<td>{{student.ASSET_ID}}</td>
+					<td>{{student.ASSET_CLASS}} </td>
+					<td>{{student.ALLOC_TYPE}}</td>
+					<td>{{student.ALLOC_TILL}}</td>
+					<td>View</td>
+					<td>UNC124356</td>
 					<td></td>
 				
 				</tr>

@@ -4,27 +4,30 @@
 	<div class="w3-panel w3-round-small w3-teal">
 		<h3>AHD Requests <!--<button routerLink="/add" class="w3-button w3-orange custom-button"><i class="w3-medium  fa fa-plus"></i> Add New Employee</button>--></h3>
 	</div>
-	<span><i class="w3-medium fa fa-search"></i> Search : <input class="" type="text" [(ngModel)]='filterData'></span>
+	<!-- <span><i class="w3-medium fa fa-search"></i> Search : <input class="" type="text" [(ngModel)]='filterData'></span>
 
 	<div class="w3-panel w3-green" *ngIf="(studentListData | filter:filterData).length == 0">
 		<p><span *ngIf="!filterData"> No requests pending action</span> </p>
 		<p><span *ngIf="filterData"> No matching results</span> </p>
-	</div>
-	<div class="w3-panel w3-light-grey w3-padding-16 w3-card-2" *ngIf="(studentListData | filter:filterData | filter:filterData).length != 0">
+	</div> -->
+	<div class="w3-panel w3-light-grey w3-padding-16 w3-card-2" *ngIf="(requests | filter:filterData | filter:filterData).length != 0">
 		<table class="w3-table w3-striped w3-bordered" fxShow fxHide.lt-md="true">
 			<tr>
 				<th><i class="w3-medium"></i> Request No.</th>
-			
-				<th><i class="w3-medium"></i> Assignee</th>
 				<th><i class="w3-medium"></i> Category</th>
-				<th><i class="w3-medium"></i> Software</th>
+				<th><i class="w3-medium"></i> Asset Id</th>
+				<th><i class="w3-medium"></i> Description</th>
+				<th><i class="w3-medium"></i> Requested On</th>
+				<th><i class="w3-medium"></i> Status</th>
 				
 			</tr>
-			<tr *ngFor="let student of studentListData | filter:filterData; index as i;" appHighlightStudent>
-				<td>{{student.id}}</td>
-				<td class="pointer" [routerLink]="['detail', i]">{{student.first_name}} </td>
-				<td class="pointer" [routerLink]="['detail', i]">{{student.last_name}}</td>
-				<td class="pointer" [routerLink]="['detail', i]">{{student.email}}</td>
+			<tr *ngFor="let student of requests | filter:filterData; index as i;" appHighlightStudent>
+				<td>{{student.REQ_ID}}</td>
+				<td class="pointer">{{student.REQ_TYPE}} </td>
+				<td class="pointer">{{student.ASSET_ID}} </td>
+				<td class="pointer">{{student.REQ_DESC}}</td>
+				<td class="pointer">{{student.REQ_TS}}</td>
+				<td class="pointer">{{student.STATUS}}</td>
 								
 			</tr>
 		</table>
