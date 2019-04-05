@@ -2,8 +2,13 @@
 
 <div class="w3-container" ngClass.xs="w3-container-mob" *ngIf="studentListData" style="background-color: aliceblue">
 	<div class="w3-panel w3-round-small w3-teal">
-		<h3>AHD Requests <!--<button routerLink="/add" class="w3-button w3-orange custom-button"><i class="w3-medium  fa fa-plus"></i> Add New Employee</button>--></h3>
+		<h3>AHD Requests &nbsp;&nbsp;&nbsp;<i class="w3-medium fa fa-refresh" (click)="getRequests()"></i><!--<button routerLink="/add" class="w3-button w3-orange custom-button"><i class="w3-medium  fa fa-plus"></i> Add New Employee</button>--></h3>
 	</div>
+	<div fxLayout="row" fxLayoutAlign="center center">
+		<img height="100px" *ngIf="showTimer" width="100px" style="text-align: center;margin-top: 250px;
+		position: fixed;
+		z-index: 100;" src="assets/loader2.gif">
+	  </div>
 	<!-- <span><i class="w3-medium fa fa-search"></i> Search : <input class="" type="text" [(ngModel)]='filterData'></span>
 
 	<div class="w3-panel w3-green" *ngIf="(studentListData | filter:filterData).length == 0">

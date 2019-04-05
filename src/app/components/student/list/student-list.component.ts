@@ -22,6 +22,8 @@
  export class StudentListComponent implements OnInit {
  	studentList:any;
 	 studentListData:any;
+	 timer:any;
+	 showTimer:boolean = false;
 	 
 	 requests: any;
 	 constructor(private studentService:StudentService,private toastr: ToastrService,
@@ -33,6 +35,7 @@
  	}
 
 	 getRequests() {
+		 this.setTimer();
 		 this.notifyService.fetchAhd().subscribe(
 			 data => { this.requests = data},
 			 err => console.error(err),
@@ -79,6 +82,13 @@
  			this.getStudentList();
  		}
  	}
+	 setTimer() {
+	   clearTimeout(this.timer);
+	   this.showTimer = true;
+	   this.timer = setTimeout(() => {
+		   this.showTimer = false;
+	   }, 2000);
+	 }
  }
 /**
  * Created By : Inf-Wm Account

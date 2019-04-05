@@ -15,7 +15,7 @@
 			<p><span *ngIf="!filterData"> No requests pending action</span> </p>
 			<p><span *ngIf="filterData"> No matching results</span> </p>
 		</div> -->
-		<h5>Software</h5>
+		<h5>Software&nbsp;&nbsp;&nbsp;<i class="w3-medium fa fa-refresh" (click)="refreshSw()"></i></h5> 
 		<div class="w3-panel w3-light-grey w3-padding-16 w3-card-2" *ngIf="(software | filter:filterData | filter:filterData).length != 0 && !showFlights">
 			<table class="w3-table w3-striped w3-bordered" fxShow fxHide.lt-md="true">
 				<tr>
@@ -109,7 +109,7 @@
 		</div>
 		</div>	
 
-		<h5>Hardware</h5>
+		<h5>Hardware&nbsp;&nbsp;&nbsp;<i class="w3-medium fa fa-refresh" (click)="refreshHw()"></i></h5>
 		<div class="w3-panel w3-light-grey w3-padding-16 w3-card-2" *ngIf="(hardware | filter:filterData | filter:filterData).length != 0 && !showFlights">
 			<table class="w3-table w3-striped w3-bordered" fxShow fxHide.lt-md="true">
 				<tr>

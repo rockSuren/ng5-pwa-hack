@@ -8,12 +8,14 @@
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card-2" ngClass.xs="w3-sidebar-mob w3-bar-block w3-collapse w3-animate-left w3-card-2" 
 style="z-index:3;width:250px;" id="mySidebar" (click)="closeNav()">
 	<!-- Logo -->
-	<img src="assets/favicon.png" class="logo"  fxShow fxHide.lt-md="true">
+	<!-- <img src="assets/favicon.png" class="logo"  fxShow fxHide.lt-md="true"> -->
+	<br/><br/><br/>
+	&nbsp;&nbsp;&nbsp;Welcome User,<br/><br/><br/>
 	<!-- Sidebar Links -->
 	
 	<div *ngIf="loginType === 'manager'">	
 		<a class="w3-bar-item w3-button" [ngClass]="{'w3-teal': (active == '/')}" routerLink="/"> <i class="w3-medium fa fa-plus"></i>  AHD</a>
-		<a class="w3-bar-item w3-button" [ngClass]="{'w3-teal': (active == '/reschedule')}" routerLink="/reschedule"> <i class=" w3-medium material-icons">note</i> AMS</a>		
+		<a class="w3-bar-item w3-button" [ngClass]="{'w3-teal': (active == '/ams')}" routerLink="/ams"> <i class=" w3-medium material-icons">note</i> AMS</a>		
 	</div>
 	<a class="w3-bar-item w3-button" (click)="logOut()"><i class="w3-medium fa fa-sign-out"></i>  Logout</a>
 </nav>

@@ -49,6 +49,15 @@ export class RescheduleComponent implements OnInit {
 		this.fetchHardware();
 		this.fetchSoftware();
 	}
+	
+	refreshSw() {
+		this.setTimer();
+		this.fetchSoftware();
+	}
+	refreshHw() {
+		this.setTimer();
+		this.fetchHardware();
+	}
 	handleSelectedFlight(flight) {
 	   this.selectedFlight = flight;
 	 }
