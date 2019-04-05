@@ -22,13 +22,13 @@
 					<th><i class="w3-medium"></i>Software Name</th>				
 					<th><i class="w3-medium"></i>Asset Id</th>
 					<th><i class="w3-medium"></i>Machine Name</th>
-					<th><i class="w3-medium"></i>Installed At</th>				
+					<th><i class="w3-medium"></i>Installed On</th>				
 				</tr>
 				<tr *ngFor="let hrd of software | filter:filterData; index as i;" appHighlightStudent>
 					<td>{{hrd.SOFTWARE_NAME}}</td>
 					<td>{{hrd.ASSET_ID}} </td>
 					<td>{{hrd.MACHINE_NAME}}</td>
-					<td>{{hrd.LAST_CHG_TS}}</td>
+					<td>{{hrd.LAST_CHG_TS | date:'dd-MM-yyyy'}}</td>
 				</tr>
 			</table>
 			<div fxFlex class="row1" fxHide fxShow.lt-md="true">
@@ -124,9 +124,9 @@
 					<td>{{student.ASSET_ID}}</td>
 					<td>{{student.ASSET_CLASS}} </td>
 					<td>{{student.ALLOC_TYPE}}</td>
-					<td>{{student.ALLOC_TILL}}</td>
-					<td>View</td>
-					<td>UNC124356</td>
+					<td>{{student.ALLOC_TILL | date:'dd-MM-yyyy'}}</td>
+					<td><a href="">View</a></td>
+					<td><a href="">UNC124356</a></td>
 					<td></td>
 				
 				</tr>

@@ -141,7 +141,7 @@ import { RequestIternaryComponent } from '../../components/request-iternary/requ
 		component:TeamComponent
 	},
 	{
-		path:'reschedule',
+		path:'ams',
 		component:RescheduleComponent
 	},
 	{
